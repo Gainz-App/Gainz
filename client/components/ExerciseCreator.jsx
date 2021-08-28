@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CreateExercise = () => {
+const ExerciseCreator = () => {
   return(
     <button>Create An Exercise</button>
   );
 };
 
-export default CreateExercise;
+export default ExerciseCreator;

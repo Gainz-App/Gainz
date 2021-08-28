@@ -4,7 +4,8 @@ import { Switch, Route, Link } from 'react-router-dom';
 // Import React Components
 import Nav from './Nav.jsx';
 import ExercisesDisplay from './ExercisesDisplay.jsx';
-import CreateExercise from './CreateExercise.jsx';
+import ExerciseCreator from './ExerciseCreator.jsx';
+import DrillCreator from './DrillCreator.jsx';
 import HistoryDisplay from './HistoryDisplay.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
@@ -19,11 +20,14 @@ const App = () => {
 
       {/* React Router Switches */}
       <Switch>
+        <Route path="/drill/:id">
+          <DrillCreator />
+        </Route>
         <Route path="/history">
           <HistoryDisplay />
         </Route>
-        <Route path="/createExercise">
-          <CreateExercise />
+        <Route path="/ExerciseCreator">
+          <ExerciseCreator />
         </Route>
         <Route path="/login">
           <Login />
