@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ExercisesDisplay = () => {
-  console.log('This is the exercise display');
+  const [exerciseData, setExerciseData] = useState([]);
+
+  // TODO MAKE REAL API CALL
+  const getExercises = () => {
+    setExerciseData([
+      { name: 'bench-press', description: 'benching', type: 'chest' },
+      { name: 'overhead-press', description: 'pressing', type: 'shoulder' }]);
+  };
+
+  useEffect(() => {
+    console.log('Getting data from server');
+    getExercises();
+  }, []);
+
   return (
     <div>
-      <h1>Pick an exercise:</h1>
-      <h2>Exercise 1</h2>
-      <h2>Exercise 2</h2>
+      <h1>Pick an Exercise:</h1>
+      {exerciseData.map((exercise, i) => {
+        console.log('makes all data exercises');
+        return (
+          <div key={exercise.name} className="exercise">
+            <h2>{exercise.name}</h2>
+            <h3>{exercise.type}</h3>
+            <h3>{exercise.description}</h3>
+            <Link to={`/drill/${exercise.name}`}>
+              <button>Start Drill</button>
+            </Link>
+            <br />
+          </div>
+        );
+      })}
     </div>
   );
 };
