@@ -1,18 +1,18 @@
 const express = require('express');
 
-const gainzController = require('../controllers/gainzController');
+const exerciseController = require('../controllers/exerciseController');
 
 const router = express.Router();
 
 router.get('/',
-  gainzController.getExcercises,
+  exerciseController.getExercises,
   (req, res) => res.status(200).json(res.locals.excerciseQuery),
 );
 
-router.get('/history',
-  gainzController.getHistory,
-  (req, res) => res.status(200).json(res.locals.drillQuery),
-);
+// router.get('/history',
+//   exerciseController.getHistory,
+//   (req, res) => res.status(200).json(res.locals.drillQuery),
+// );
 
 // router.get('/createExercise',
 //   gainzController.getNewExcercises,
