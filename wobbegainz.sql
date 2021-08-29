@@ -27,6 +27,7 @@ CREATE TABLE public.user_sessions (
 CREATE TABLE public.types (
   "_id" serial PRIMARY KEY,
   "name" varchar
+
 );
 
 CREATE TABLE public.exercises (
@@ -59,3 +60,16 @@ ALTER TABLE public.exercises ADD CONSTRAINT "exercises_fk0" FOREIGN KEY ("type_i
 ALTER TABLE public.exercises ADD CONSTRAINT "exercises_fk1" FOREIGN KEY ("user_id") REFERENCES  public.users("_id");
 
 ALTER TABLE public.drills ADD CONSTRAINT "drills_fk0" FOREIGN KEY ("exercise_id") REFERENCES  public.exercises("_id");
+
+INSERT INTO public.types (name) VALUES ('arms');
+INSERT INTO public.types (name) VALUES ('legs');
+INSERT INTO public.types (name) VALUES ('core');
+INSERT INTO public.types (name) VALUES ('upper body');
+INSERT INTO public.types (name) VALUES ('lower body');
+INSERT INTO public.types (name) VALUES ('back');
+
+
+INSERT INTO public.users (_id, name, email, password) VALUES ('123', 'Omar', 'omar@gmail.com', 'helloOmar');
+INSERT INTO public.exercises (_id, name, description, type_id, user_id, init_weight, init_reps, init_sets, last_weight, last_reps, last_sets) VALUES ('123454321', 'omarB', 'bench press', '1', '123', '14', '13', '12', '11', '10', '9');
+INSERT INTO public.drills (exercise_id, weight, reps, sets, rest_interval, date) VALUES ('123454321', '120', '20', '19', '30', current_timestamp);
+INSERT INTO public.user_sessions (user_id, created, ssid) VALUES ('123', current_timestamp, 'OMARSSID');
