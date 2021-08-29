@@ -3,11 +3,11 @@ const db = require('../postgresPool');
 const exerciseController = {};
 
 exerciseController.getExercises = (req, res, next) => {
-  console.log('IN GET EXERCISES')
+  console.log('IN GET EXERCISES');
   const exerciseQ = 'SELECT * FROM exercises';
   db.query(exerciseQ)
     .then((data) => {
-      res.locals.excerciseQuery = data.rows;
+      res.locals.exerciseQuery = data.rows;
       next();
     })
     .catch((err) => {
