@@ -3,11 +3,11 @@ const db = require('../postgresPool');
 const exerciseController = {};
 
 exerciseController.getExercises = (req, res, next) => {
-  console.log('IN GET EXERCISES')
+  console.log('IN GET EXERCISES');
   const exerciseQ = 'SELECT * FROM exercises';
   db.query(exerciseQ)
     .then((data) => {
-      res.locals.excerciseQuery = data.rows;
+      res.locals.exerciseQuery = data.rows;
       next();
     })
     .catch((err) => {
@@ -38,7 +38,7 @@ exerciseController.createNewExercise = (req, res, next) => {
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
   RETURNING *`;
 
-  const params = [req.body.name, req.body.description, req.body.type_id, req.body.user_id, req.body.init_weight, req.body.init_reps, req.body.init_sets, req.body.init_weight, req.body.init_reps, req.body.init_sets];
+const params = [req.body.name, req.body.description, req.body.type_id, req.body.user_id, req.body.init_weight, req.body.init_reps, req.body.init_sets, req.body.init_weight, req.body.init_reps, req.body.init_sets];
   
   console.log(params);
 

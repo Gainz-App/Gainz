@@ -1,12 +1,16 @@
 const express = require('express');
 
 const exerciseController = require('../controllers/exerciseController');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
 router.get('/',
   exerciseController.getExercises,
-  (req, res) => res.status(200).json(res.locals.excerciseQuery),
+  (req, res) => {
+    console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
+    res.status(200).json(res.locals.exerciseQuery);
+  },
 );
 
 router.get('/history',
@@ -17,6 +21,11 @@ router.get('/history',
 router.post('/exercise',
   exerciseController.createNewExercise,
   (req, res) => res.status(200).json(res.locals.newExercise),
+);
+
+router.post('/signup',
+  userController.newUser,
+  (req, res) => res.status(200).json(res.locals.newUsersQuery),
 );
 
 // router.get('/login',

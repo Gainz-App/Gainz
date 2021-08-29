@@ -5,15 +5,24 @@ const ExercisesDisplay = () => {
   const [exerciseData, setExerciseData] = useState([]);
 
   // TODO MAKE REAL API CALL
-  const getExercises = () => {
-    setExerciseData([
-      { name: 'bench-press', description: 'benching', type: 'chest' },
-      { name: 'overhead-press', description: 'pressing', type: 'shoulder' }]);
-  };
+  // const getExercises = () => {
+  //   setExerciseData([
+  //     { name: 'bench-press', description: 'benching', type: 'chest' },
+  //     { name: 'overhead-press', description: 'pressing', type: 'shoulder' }]);
+  // };
 
   useEffect(() => {
     console.log('Getting data from server');
-    getExercises();
+    // getExercises();
+    fetch('/api/')
+      .then((res) => res.json())
+      .then((exercises) => {
+        console.log('exercises are', exercises);
+        setExerciseData(exercises);
+      })
+      .catch((error) => {
+        console.log('error on ExercisesDisplay', error);
+      });
   }, []);
 
   return (
