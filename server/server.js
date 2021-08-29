@@ -2,15 +2,19 @@
 const express = require('express');
 const path = require('path');
 
+// Import express routers
+const apiRouter = require('./routes/api');
+
 // Create express App:
 const app = express();
 
-const apiRouter = require('./routes/api');
-
-app.use('/api', apiRouter);
-
+// Parse body and querystrings of requests sent to the server
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Route Handlers
+// moved down here since it was catching /api request before parsing json
+app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve webpack build files from
