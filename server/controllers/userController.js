@@ -48,7 +48,7 @@ userController.createUser = (req, res, next) => {
     })
     .then(({ rows: user }) => {
       console.log('CREATED NEW USER: ', user);
-      res.locals.authUser = { name: user[0].name, email: user[0].email };
+      res.locals.authUser = { name: user[0].name, email: user[0].email, id: user[0]._id };
       return next();
     })
     .catch((err) => {
@@ -92,7 +92,7 @@ userController.verifyUser = (req, res, next) => {
         throw new Error();
       }
 
-      res.locals.authUser = { name: user[0].name, email: user[0].email };
+      res.locals.authUser = { name: user[0].name, email: user[0].email, id: user[0]._id };
       // Check if passwords match:
       return bcrypt.compare(password, user[0].password);
     })
