@@ -8,7 +8,6 @@ const router = express.Router();
 router.get('/',
   exerciseController.getExercises,
   (req, res) => {
-    //console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
     res.status(200).json(res.locals.exerciseQuery);
   },
 );
@@ -21,6 +20,11 @@ router.get('/history',
 router.post('/exercise',
   exerciseController.createExercise,
   (req, res) => res.status(200).json(res.locals.newExercise),
+);
+
+router.post('/drill',
+  exerciseController.createDrill,
+  (req, res) => res.status(200).json(res.locals.createDrill),
 );
 
 router.post('/signup',

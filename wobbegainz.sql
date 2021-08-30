@@ -13,25 +13,25 @@ SET row_security = off;
 CREATE TABLE public.users (
 	"_id" serial NOT NULL PRIMARY KEY,
 	"name" varchar NOT NULL,
-	"email" varchar NOT NULL,
+	"email" varchar NOT NULL UNIQUE,
 	"password" varchar NOT NULL
 );
 
 CREATE TABLE public.user_sessions (
-  "_id" serial PRIMARY KEY,
+  "_id" serial NOT NULL PRIMARY KEY,
   "user_id" bigint,
   "created" timestamp,
   "ssid" varchar
 );
 
 CREATE TABLE public.types (
-  "_id" serial PRIMARY KEY,
+  "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar
 
 );
 
 CREATE TABLE public.exercises (
-  "_id" serial PRIMARY KEY,
+  "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar,
   "description" varchar,
   "type_id" bigint,
@@ -39,19 +39,21 @@ CREATE TABLE public.exercises (
   "init_weight" int,
   "init_reps" int,
   "init_sets" int,
+  "init_rest" int,
   "last_weight" int,
   "last_reps" int,
-  "last_sets" int
+  "last_sets" int,
+  "last_rest" int
 );
 
 CREATE TABLE public.drills (
-  "_id" serial PRIMARY KEY,
+  "_id" serial NOT NULL PRIMARY KEY,
   "exercise_id" bigint,
   "weight" int,
   "reps" int,
   "sets" int,
   "rest_interval" int,
-  "date" TIMESTAMP
+  "date" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 ALTER TABLE public.user_sessions ADD CONSTRAINT "user_sessions_fk0" FOREIGN KEY ("user_id") REFERENCES  public.users("_id");
@@ -69,7 +71,7 @@ INSERT INTO public.types (name) VALUES ('Lower Body');
 INSERT INTO public.types (name) VALUES ('Back');
 
 
-INSERT INTO public.users (_id, name, email, password) VALUES ('123', 'Omar', 'omar@gmail.com', 'helloOmar');
-INSERT INTO public.exercises (_id, name, description, type_id, user_id, init_weight, init_reps, init_sets, last_weight, last_reps, last_sets) VALUES ('123454321', 'omarB', 'bench press', '1', '123', '14', '13', '12', '11', '10', '9');
-INSERT INTO public.drills (exercise_id, weight, reps, sets, rest_interval, date) VALUES ('123454321', '120', '20', '19', '30', current_timestamp);
-INSERT INTO public.user_sessions (user_id, created, ssid) VALUES ('123', current_timestamp, 'OMARSSID');
+INSERT INTO public.users (_id, name, email, password) VALUES ('1', 'Omar', 'omar@gmail.com', '$2b$10$e0koG1AfGhVgw6omM4oYj.EguJnoatErT8a0O5RkDkDQwM3pe7QUG');
+INSERT INTO public.exercises (_id, name, description, type_id, user_id, init_weight, init_reps, init_sets, init_rest, last_weight, last_reps, last_sets, last_rest) VALUES ('1', 'Bench Press', 'Chest exercises on flat bench', '4', '1', '225', '8', '3', '1', '225', '8', '3', '1');
+-- INSERT INTO public.drills (exercise_id, weight, reps, sets, rest_interval, date) VALUES ('123454321', '120', '20', '19', '30', current_timestamp);
+-- INSERT INTO public.user_sessions (user_id, created, ssid) VALUES ('123', current_timestamp, 'OMARSSID');
