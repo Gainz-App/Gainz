@@ -37,8 +37,9 @@ router.post('/signup',
 router.post('/login',
   userController.verifyUser,
   (req, res) => {
-    // Error when signing up
+    // Error when Logging in
     if (res.locals.error) {
+      console.log('ERROR WHEN LOGGING IN');
       return res.status(400).json(res.locals.error);
     }
     return res.status(200).json(res.locals.authUser);

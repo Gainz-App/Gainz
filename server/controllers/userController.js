@@ -10,28 +10,44 @@ userController.createUser = (req, res, next) => {
 
   // Validate form data exists
   if (!name || !email || !password) {
-    res.locals.error = { message: 'Missing SignUp Form Data!' };
+    res.locals.error = { message: 'Please enter all fields!' };
     return next();
   }
 
-  const newUserQ = `
-  INSERT INTO users
-  (name, email, password)
-  VALUES ($1, $2, $3)
-  RETURNING *;`;
+  // Make sure email does not already exist in database:
+  const checkUserQ = `
+  SELECT * FROM users
+  WHERE email = $1
+  LIMIT 1
+  `;
 
-  const params = [req.body.name, req.body.email, req.body.password];
+  db.query(checkUserQ, [email])
+    .then(({ rows: userExists }) => {
+      if (userExists.length) {
+        res.locals.error = { message: 'Email already in use, try logging in!' };
+        return next();
+      }
 
-  db.query(newUserQ, params)
-    .then(({ rows: user }) => {
-      console.log('CREATED NEW USER: ', user);
-      res.locals.authUser = { name: user[0].name, email: user[0].email };
-      return next();
-    })
-    .catch((err) => next({
-      log: `Error in userController.createUser when trying create a new user: ERROR: ${err} `,
-      message: { err: 'Error adding new user to DB' },
-    }));
+      // Create new User
+      const newUserQ = `
+      INSERT INTO users
+      (name, email, password)
+      VALUES ($1, $2, $3)
+      RETURNING *;`;
+
+      const params = [req.body.name, req.body.email, req.body.password];
+
+      db.query(newUserQ, params)
+        .then(({ rows: user }) => {
+          console.log('CREATED NEW USER: ', user);
+          res.locals.authUser = { name: user[0].name, email: user[0].email };
+          return next();
+        })
+        .catch((err) => next({
+          log: `Error in userController.createUser when trying create a new user: ERROR: ${err} `,
+          message: { err: 'Error adding new user to DB' },
+        }));
+    });
 };
 
 // verifyUser checks input login details from client
@@ -58,8 +74,8 @@ userController.verifyUser = (req, res, next) => {
       console.log('USER DATA FROM DB: ', user);
 
       // If no result, user not in DB, return login error
-      if (user.length === 0) {
-        res.locals.error = {message: 'No account for that email address' };
+      if (!user.length) {
+        res.locals.error = { message: 'No account for that email address' };
         return next();
       }
 

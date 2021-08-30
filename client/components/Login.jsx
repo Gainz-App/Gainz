@@ -92,7 +92,14 @@ const Login = () => {
 
           <button type="submit">Log In</button>
         </form>
-        {errorMessage ? <p>Error: {errorMessage}</p> : null}
+        {/* LOGIN ERROR MESSAGE */}
+        {errorMessage ? (
+          <p>
+            Error:
+            {` ${errorMessage}`}
+          </p>
+        )
+          : null}
       </section>
     );
   }

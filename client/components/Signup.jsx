@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 const Signup = () => {
   const [formVals, setFormVals] = useState({ email: '', name: '', password: '' });
   const [loggedIn, setLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Helper function to update state formVals on form change
   const updateFormVal = (key, val) => {
@@ -24,11 +25,17 @@ const Signup = () => {
       .then((response) => {
         // If signup successful, login
         console.log('SIGNUP RESPONSE: ', response.status);
-        if (response.status === 201) {
-          setLoggedIn(true);
-          return;
+        if (response.status === 201 || 400) {
+          return response.json();
         }
         throw new Error('Error when trying to create new user!');
+      })
+      .then((data) => {
+        if (data.message) {
+          setErrorMessage(data.message);
+          return;
+        }
+        setLoggedIn(true);
       })
       .catch((err) => console.error(err));
   };
@@ -98,6 +105,15 @@ const Signup = () => {
 
           <button type="submit">Sign Up</button>
         </form>
+
+        {/* SIGNUP ERROR MESSAGE */}
+        {errorMessage ? (
+          <p>
+            Error:
+            {` ${errorMessage}`}
+          </p>
+        )
+          : null}
       </section>
     );
   }
