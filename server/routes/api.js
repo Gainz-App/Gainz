@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/',
   exerciseController.getExercises,
   (req, res) => {
-    console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
+    //console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
     res.status(200).json(res.locals.exerciseQuery);
   },
 );
@@ -30,13 +30,19 @@ router.post('/signup',
     if (res.locals.error) {
       return res.status(400).json(res.locals.error);
     }
-    return res.status(201).json(res.locals.newUserQuery);
+    return res.status(201).json(res.locals.authUser);
   },
 );
 
 router.post('/login',
   userController.verifyUser,
-  (req, res) => res.status(200).json({}),
+  (req, res) => {
+    // Error when signing up
+    if (res.locals.error) {
+      return res.status(400).json(res.locals.error);
+    }
+    return res.status(200).json(res.locals.authUser);
+  },
 );
 
 module.exports = router;

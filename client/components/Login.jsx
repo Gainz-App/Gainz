@@ -25,11 +25,14 @@ const Login = () => {
       .then((response) => {
         // If login successful, set state for redirect
         console.log('LOGIN RESPONSE: ', response.status);
-        if (response.status === 200) {
-          setLoggedIn(true);
-          return;
+        if (response.status === 200 || response.status === 400) {
+          return response.json();
         }
         throw new Error('Error when trying to login a user!');
+      }).then((data) => {
+        if (data.message) {
+          console.log('ERROR WHEN TRYING TO LOG IN: ', data.message);
+        }
       })
       .catch((err) => console.error(err));
   };
