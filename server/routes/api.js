@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/',
   exerciseController.getExercises,
   (req, res) => {
-    console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
+    //console.log('THIS IS RES LOCALS EXERQ', res.locals.exerciseQuery);
     res.status(200).json(res.locals.exerciseQuery);
   },
 );
@@ -19,33 +19,31 @@ router.get('/history',
 );
 
 router.post('/exercise',
-  exerciseController.createNewExercise,
+  exerciseController.createExercise,
   (req, res) => res.status(200).json(res.locals.newExercise),
 );
 
 router.post('/signup',
-  userController.newUser,
-  (req, res) => res.status(200).json(res.locals.newUsersQuery),
+  userController.createUser,
+  (req, res) => {
+    // Error when signing up
+    if (res.locals.error) {
+      return res.status(400).json(res.locals.error);
+    }
+    return res.status(201).json(res.locals.authUser);
+  },
 );
 
-// router.get('/login',
-//   gainzController.getLogin,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.get('/logout',
-//   gainzController.getFilm,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.get('/signup',
-//   gainzController.getFilm,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.post('/',
-//   gainzController.exercises,
-//   (req, res) => res.status(200),
-// );
+router.post('/login',
+  userController.verifyUser,
+  (req, res) => {
+    // Error when Logging in
+    if (res.locals.error) {
+      console.log('ERROR WHEN LOGGING IN');
+      return res.status(400).json(res.locals.error);
+    }
+    return res.status(200).json(res.locals.authUser);
+  },
+);
 
 module.exports = router;

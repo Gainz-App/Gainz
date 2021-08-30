@@ -61,12 +61,12 @@ ALTER TABLE public.exercises ADD CONSTRAINT "exercises_fk1" FOREIGN KEY ("user_i
 
 ALTER TABLE public.drills ADD CONSTRAINT "drills_fk0" FOREIGN KEY ("exercise_id") REFERENCES  public.exercises("_id");
 
-INSERT INTO public.types (name) VALUES ('arms');
-INSERT INTO public.types (name) VALUES ('legs');
-INSERT INTO public.types (name) VALUES ('core');
-INSERT INTO public.types (name) VALUES ('upper body');
-INSERT INTO public.types (name) VALUES ('lower body');
-INSERT INTO public.types (name) VALUES ('back');
+INSERT INTO public.types (name) VALUES ('Arms');
+INSERT INTO public.types (name) VALUES ('Legs');
+INSERT INTO public.types (name) VALUES ('Core');
+INSERT INTO public.types (name) VALUES ('Upper Body');
+INSERT INTO public.types (name) VALUES ('Lower Body');
+INSERT INTO public.types (name) VALUES ('Back');
 
 
 INSERT INTO public.users (_id, name, email, password) VALUES ('123', 'Omar', 'omar@gmail.com', 'helloOmar');
