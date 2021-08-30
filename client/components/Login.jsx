@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 // React element to render login form and submit login to server
-const Login = () => {
+const Login = (props) => {
   const [formVals, setFormVals] = useState({ email: '', password: '' });
   const [loggedIn, setLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -37,6 +37,7 @@ const Login = () => {
           return;
         }
         // Successful login, redirect to main page:
+        props.setUserInfo(data);
         setLoggedIn(true);
       })
       .catch((err) => console.error(err));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
 // Import React Components
@@ -12,11 +12,11 @@ import Login from './Login.jsx';
 
 // App Component
 const App = () => {
-  console.log('THIS IS THE APP');
+  const [userInfo, setUserInfo] = useState({ name: '', email: '' });
 
   return (
     <div className="App">
-      <Nav />
+      <Nav userInfo={userInfo} />
 
       {/* React Router Switches */}
       <Switch>
@@ -30,13 +30,13 @@ const App = () => {
           <ExerciseCreator />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login setUserInfo={setUserInfo} />
         </Route>
         <Route path="/logout">
           <h1>LOGOUT PAGE</h1>
         </Route>
         <Route path="/signup">
-          <Signup />
+          <Signup setUserInfo={setUserInfo} />
         </Route>
         <Route path="/">
           <ExercisesDisplay />

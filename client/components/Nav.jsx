@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
-  console.log('this is the navbar speaking');
+const Nav = ({ userInfo }) => {
+  console.log('this is the navbar speaking', userInfo);
 
   return (
     <nav>
@@ -25,6 +25,18 @@ const Nav = () => {
         </li>
         <li>
           <Link to="/signup">Signup</Link>
+        </li>
+        <li>
+          {userInfo.name
+            ? (
+              <h4>
+                Logged in as:
+                {userInfo.name}
+                -
+                {userInfo.email}
+              </h4>
+            )
+            : (<h4>Not logged in!</h4>)}
         </li>
       </ul>
     </nav>
