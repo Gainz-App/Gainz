@@ -24,7 +24,7 @@ const ExercisesDisplay = () => {
         console.log('error on ExercisesDisplay', error);
       });
   }, []);
-
+//NEED TO CONNECT START DRILL BUTTON TO DRILL CREATOR
   return (
     <div>
       <h1>Pick an Exercise:</h1>
@@ -33,8 +33,8 @@ const ExercisesDisplay = () => {
         return (
           <div key={exercise.name} className="exercise">
             <h2>{exercise.name}</h2>
-            <h3>{exercise.type}</h3>
-            <h3>{exercise.description}</h3>
+            <h3>Type: {exercise.typesname}</h3>
+            <h3>Description: {exercise.description}</h3>
             <Link to={`/drill/${exercise.name}`}>
               <button>Start Drill</button>
             </Link>
