@@ -2,11 +2,11 @@ const express = require('express');
 
 const exerciseController = require('../controllers/exerciseController');
 const userController = require('../controllers/userController');
-
+const cookieController = require('../controllers/cookieController');
 const router = express.Router();
 
 router.get('/',
-  exerciseController.getExercises,
+  exerciseController.getExercises, 
   (req, res) => {
     res.status(200).json(res.locals.exerciseQuery);
   },
@@ -29,6 +29,7 @@ router.post('/drill',
 
 router.post('/signup',
   userController.createUser,
+  cookieController.setSSIDCookie,
   (req, res) => {
     // Error when signing up
     if (res.locals.error) {
@@ -40,6 +41,7 @@ router.post('/signup',
 
 router.post('/login',
   userController.verifyUser,
+  cookieController.setSSIDCookie,
   (req, res) => {
     // Error when Logging in
     if (res.locals.error) {
