@@ -19,7 +19,7 @@ router.get('/history',
 );
 
 router.post('/exercise',
-  exerciseController.createNewExercise,
+  exerciseController.createExercise,
   (req, res) => res.status(200).json(res.locals.newExercise),
 );
 

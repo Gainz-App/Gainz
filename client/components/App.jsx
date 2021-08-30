@@ -44,6 +44,7 @@ const App = () => {
         </Route>
 
       </Switch>
+
       {/* If not logged in force redirect to login page */}
       {!userInfo.name ? <Redirect to="/login" /> : null}
 
