@@ -55,8 +55,13 @@ exerciseController.createExercise = (req, res, next) => {
 };
 
 exerciseController.createDrill = (req, res, next) => {
-  console.log('REQUEST TO CREATE NEW DRILL SET');
-  const newDrillQ = `INSERT INTO drills (exercise_id, weight, reps, sets, rest_interval) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  console.log('REQUEST TO CREATE NEW DRILL SET', req.body);
+  const newDrillQ = `
+  INSERT INTO drills 
+  (exercise_id, weight, reps, sets, rest_interval) 
+  VALUES ($1, $2, $3, $4, $5) 
+  RETURNING *;
+  `;
 
   const drillParams = [req.body.exercise_id, req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval];
   console.log('THIS IS DP', drillParams);
@@ -71,4 +76,48 @@ exerciseController.createDrill = (req, res, next) => {
       message: { err: 'Error creating DRILL in DB' },
     }));
 };
+
+// Updates exercise values with those from most recent drill
+//update last weight, last set, last rep, last rest
+exerciseController.updateExerciseWithDrill = (req, res, next) => {
+  console.log('UPDATING EXERCISE WITH LATEST DRILL');
+
+  const updateQ = `
+    UPDATE exercises
+    SET last_weight=$1, last_reps=$2, last_sets=$3, last_rest=$4
+    WHERE _id=$5;
+  `;
+
+  const params = [req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval, req.body.exercise_id];
+
+  db.query(updateQ, params)
+    .then((data) => {
+      console.log('UPDATE DATA FROM DB: ', data.rows);
+      return next();
+    })
+    .catch((err) => next({
+      log: `Error in exerciseController.updateExerciseWithDrill when trying to update an exercise with drill data: ERROR: ${err} `,
+      message: { err: 'Error updating exercise with drill in DB' },
+    }));
+};
+
+exerciseController.getExerciseDetails = (req, res, next) => {
+  console.log('TRYING TO GET EXERCISE DETAILS ', req.params);
+  const detailsQ = `
+    SELECT * FROM exercises
+    WHERE _id = $1
+    LIMIT 1;
+  `;
+
+  db.query(detailsQ, [req.params.id])
+    .then((data) => {
+      res.locals.exerciseDetails = data.rows[0];
+      return next();
+    })
+    .catch((err) => next({
+      log: `Error in exerciseController.getExerciseDetails when trying to GET DRILL data: ERROR: ${err} `,
+      message: { err: 'Error getting exercise details from DB' },
+    }));
+};
+
 module.exports = exerciseController;

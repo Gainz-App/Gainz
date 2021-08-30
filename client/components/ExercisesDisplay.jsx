@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 const ExercisesDisplay = () => {
   const [exerciseData, setExerciseData] = useState([]);
 
-  // TODO MAKE REAL API CALL
-  // const getExercises = () => {
-  //   setExerciseData([
-  //     { name: 'bench-press', description: 'benching', type: 'chest' },
-  //     { name: 'overhead-press', description: 'pressing', type: 'shoulder' }]);
-  // };
-
   useEffect(() => {
     console.log('Getting data from server');
     // getExercises();
@@ -24,7 +17,7 @@ const ExercisesDisplay = () => {
         console.log('error on ExercisesDisplay', error);
       });
   }, []);
-//NEED TO CONNECT START DRILL BUTTON TO DRILL CREATOR
+
   return (
     <div>
       <h1>Pick an Exercise:</h1>
@@ -35,7 +28,7 @@ const ExercisesDisplay = () => {
             <h2>{exercise.name}</h2>
             <h3>Type: {exercise.typesname}</h3>
             <h3>Description: {exercise.description}</h3>
-            <Link to={`/drill/${exercise.name}`}>
+            <Link to={`/drill/${exercise._id}`}>
               <button>Start Drill</button>
             </Link>
             <br />
