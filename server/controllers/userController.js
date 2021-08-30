@@ -2,11 +2,20 @@ const db = require('../postgresPool');
 
 const userController = {};
 
+// createUser adds a new user to the database
 userController.createUser = (req, res, next) => {
   console.log('TRYING TO CREATE A NEW USER: ', req.body);
-  const newUsersQ = 'INSERT INTO users (_id, name, email, password) VALUES ("234", "Edwin", "edwinl@gmail.com", "987")';
-  db.query(newUsersQ)
+  const newUserQ = `
+  INSERT INTO users
+  (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *`;
+
+  const params = [req.body.name, req.body.email, req.body.password];
+
+  db.query(newUserQ, params)
     .then((data) => {
+      console.log('CREATED NEW USER: ', data.rows);
       res.locals.newUsersQuery = data.rows;
       next();
     })
