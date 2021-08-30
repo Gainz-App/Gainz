@@ -4,7 +4,8 @@ const exerciseController = {};
 
 exerciseController.getExercises = (req, res, next) => {
   console.log('IN GET EXERCISES');
-  const exerciseQ = 'SELECT * FROM exercises';
+  //not quite right DB read command below, but gets us the types name we need! -Lindsay
+  const exerciseQ = 'SELECT exercises.*, types._id AS typesID, types.name AS typesName  FROM public.exercises LEFT OUTER JOIN public.types ON exercises.type_id = types._id';
   db.query(exerciseQ)
     .then((data) => {
       res.locals.exerciseQuery = data.rows;
