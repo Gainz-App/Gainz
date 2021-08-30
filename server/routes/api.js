@@ -24,7 +24,7 @@ router.post('/exercise',
 );
 
 router.post('/signup',
-  userController.newUser,
+  userController.createUser,
   (req, res) => res.status(200).json(res.locals.newUsersQuery),
 );
 

@@ -6,7 +6,7 @@ const ExerciseCreator = () => {
     <div>
     <form>
       <p>Enter Exercise Name:</p>
-      <input 
+      <input
         type="text"
         name="name"
         value=""
@@ -29,8 +29,16 @@ const ExerciseCreator = () => {
       <p>Enter Exercise Idea Reps</p>
       <input type="text" name="reps" value="" />
       <p>Enter Exercise Idea Rest</p>
-      <button onClick={handleSubmitClick}>Submit </button>
-      <button onClick={handleCancelClick}>Cancel </button>
+      <button
+        //onClick={handleSubmitClick}
+      >
+        Submit
+      </button>
+      <button
+      //onClick={handleCancelClick}
+      >
+        Cancel
+      </button>
     </form>
     <button>Create An Exercise</button>
     </div>
