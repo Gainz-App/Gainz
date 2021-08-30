@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
+// React component to render signup form and send form data to server
 const Signup = () => {
   const [formVals, setFormVals] = useState({ email: '', name: '', password: '' });
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,7 +23,7 @@ const Signup = () => {
     })
       .then((response) => {
         // If signup successful, login
-        console.log('LOGIN RESPONSE: ', response.status);
+        console.log('SIGNUP RESPONSE: ', response.status);
         if (response.status === 201) {
           setLoggedIn(true);
           return;
