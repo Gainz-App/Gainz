@@ -1,4 +1,8 @@
 const db = require('../postgresPool');
+const bcrypt = require('bcrypt');
+
+// bcrypt settings
+const SALT_ROUNDS = 10;
 
 const userController = {};
 
@@ -25,9 +29,13 @@ userController.createUser = (req, res, next) => {
     .then(({ rows: userExists }) => {
       if (userExists.length) {
         res.locals.error = { message: 'Email already in use, try logging in!' };
-        return next();
+        throw new Error();
       }
 
+      // Hash password using bcrypt:
+      return bcrypt.hash(req.body.password, SALT_ROUNDS);
+    })
+    .then((hash) => {
       // Create new User
       const newUserQ = `
       INSERT INTO users
@@ -35,18 +43,23 @@ userController.createUser = (req, res, next) => {
       VALUES ($1, $2, $3)
       RETURNING *;`;
 
-      const params = [req.body.name, req.body.email, req.body.password];
-
-      db.query(newUserQ, params)
-        .then(({ rows: user }) => {
-          console.log('CREATED NEW USER: ', user);
-          res.locals.authUser = { name: user[0].name, email: user[0].email };
-          return next();
-        })
-        .catch((err) => next({
-          log: `Error in userController.createUser when trying create a new user: ERROR: ${err} `,
-          message: { err: 'Error adding new user to DB' },
-        }));
+      const params = [req.body.name, req.body.email, hash];
+      return db.query(newUserQ, params);
+    })
+    .then(({ rows: user }) => {
+      console.log('CREATED NEW USER: ', user);
+      res.locals.authUser = { name: user[0].name, email: user[0].email };
+      return next();
+    })
+    .catch((err) => {
+      // Handled login error to return with message
+      if (res.locals.error) {
+        return next();
+      }
+      return next({
+        log: `Error in userController.createUser when trying create a new user: ERROR: ${err} `,
+        message: { err: 'Error adding new user to DB' },
+      });
     });
 };
 
@@ -76,23 +89,32 @@ userController.verifyUser = (req, res, next) => {
       // If no result, user not in DB, return login error
       if (!user.length) {
         res.locals.error = { message: 'No account for that email address' };
-        return next();
+        throw new Error();
       }
 
-      // If passwords do not match, return login error:
-      if (user[0].password !== password) {
+      res.locals.authUser = { name: user[0].name, email: user[0].email };
+      // Check if passwords match:
+      return bcrypt.compare(password, user[0].password);
+    })
+    .then((passwordMatch) => {
+      if (!passwordMatch) {
         res.locals.error = { message: 'Invalid username and/or password!' };
-        return next();
+        throw new Error();
       }
 
       // Login Successful
-      res.locals.authUser = { name: user[0].name, email: user[0].email };
       return next();
     })
-    .catch((err) => next({
-      log: `Error in userController.verifyUser when trying find a user to login: ERROR: ${err} `,
-      message: { err: 'Error verifying user' },
-    }));
+    .catch((err) => {
+      // Handled login error to return with message
+      if (res.locals.error) {
+        return next();
+      }
+      return next({
+        log: `Error in userController.verifyUser when trying find a user to login: ERROR: ${err} `,
+        message: { err: 'Error verifying user' },
+      });
+    });
 };
 
 module.exports = userController;

@@ -49,6 +49,7 @@
     "webpack-dev-server": "^4.0.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "pg": "^8.7.1",
     "react": "^17.0.2",
