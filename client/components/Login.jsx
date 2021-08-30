@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // React element to render login form and submit login to server
 const Login = () => {
@@ -13,25 +14,24 @@ const Login = () => {
   // Function to submit signup form data to server, create new account
   const login = () => {
     console.log('logging in!', formVals);
-    // Need to build new SERVER ROUTE FOR LOGINS
 
-    // fetch('/api/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formVals),
-    // })
-    //   .then((response) => {
-    //     // If login successful, set state for redirect
-    //     console.log('LOGIN RESPONSE: ', response.status);
-    //     if (response.status === 201) {
-    //       setLoggedIn(true);
-    //       return;
-    //     }
-    //     throw new Error('Error when trying to login a user!');
-    //   })
-    //   .catch((err) => console.error(err));
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formVals),
+    })
+      .then((response) => {
+        // If login successful, set state for redirect
+        console.log('LOGIN RESPONSE: ', response.status);
+        if (response.status === 200) {
+          setLoggedIn(true);
+          return;
+        }
+        throw new Error('Error when trying to login a user!');
+      })
+      .catch((err) => console.error(err));
   };
 
   const { email, password } = formVals;

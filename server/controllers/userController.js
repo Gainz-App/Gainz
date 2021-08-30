@@ -25,4 +25,11 @@ userController.createUser = (req, res, next) => {
     }));
 };
 
+// verifyUser checks input login details from client
+// and verifies the input details
+userController.verifyUser = (req, res, next) => {
+  console.log('TRYING TO VERIFY USER LOGIN DETAILS', req.body);
+  return next();
+};
+
 module.exports = userController;

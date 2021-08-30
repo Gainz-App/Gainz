@@ -28,24 +28,9 @@ router.post('/signup',
   (req, res) => res.status(201).json(res.locals.newUsersQuery),
 );
 
-// router.get('/login',
-//   gainzController.getLogin,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.get('/logout',
-//   gainzController.getFilm,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.get('/signup',
-//   gainzController.getFilm,
-//   (req, res) => res.status(200).json({}),
-// );
-
-// router.post('/',
-//   gainzController.exercises,
-//   (req, res) => res.status(200),
-// );
+router.post('/login',
+  userController.verifyUser,
+  (req, res) => res.status(200).json({}),
+);
 
 module.exports = router;
