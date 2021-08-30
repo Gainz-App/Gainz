@@ -27,7 +27,6 @@ CREATE TABLE public.user_sessions (
 CREATE TABLE public.types (
   "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar
-
 );
 
 CREATE TABLE public.exercises (

@@ -17,6 +17,11 @@ router.get('/history',
   (req, res) => res.status(200).json(res.locals.drillQuery),
 );
 
+router.get('/exercise/:id',
+  exerciseController.getExerciseDetails,
+  (req, res) => res.status(200).json(res.locals.exerciseDetails),
+);
+
 router.post('/exercise',
   exerciseController.createExercise,
   (req, res) => res.status(200).json(res.locals.newExercise),
@@ -24,7 +29,8 @@ router.post('/exercise',
 
 router.post('/drill',
   exerciseController.createDrill,
-  (req, res) => res.status(200).json(res.locals.createDrill),
+  exerciseController.updateExerciseWithDrill,
+  (req, res) => res.status(201).json(res.locals.createDrill),
 );
 
 router.post('/signup',

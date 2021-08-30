@@ -18,11 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Route Handlers
-// moved down here since it was catching /api request before parsing json
 app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  // Serve webpack build files from
+  // Serve webpack build files from bundle
   app.use('/build', express.static(path.join(__dirname, '../build')));
 
   // Serve main html page
