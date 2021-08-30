@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 const Login = () => {
   const [formVals, setFormVals] = useState({ email: '', password: '' });
   const [loggedIn, setLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Helper function to update state formVals on form change
   const updateFormVal = (key, val) => {
@@ -30,9 +31,13 @@ const Login = () => {
         }
         throw new Error('Error when trying to login a user!');
       }).then((data) => {
+        // If Error on Login display error message
         if (data.message) {
-          console.log('ERROR WHEN TRYING TO LOG IN: ', data.message);
+          setErrorMessage(data.message);
+          return;
         }
+        // Successful login, redirect to main page:
+        setLoggedIn(true);
       })
       .catch((err) => console.error(err));
   };
@@ -87,6 +92,7 @@ const Login = () => {
 
           <button type="submit">Log In</button>
         </form>
+        {errorMessage ? <p>Error: {errorMessage}</p> : null}
       </section>
     );
   }
