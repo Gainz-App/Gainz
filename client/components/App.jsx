@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 // Import React Components
 import Nav from './Nav.jsx';
@@ -9,6 +9,7 @@ import DrillCreator from './DrillCreator.jsx';
 import HistoryDisplay from './HistoryDisplay.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
+import Logout from './Logout.jsx';
 
 // App Component
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
           <Login setUserInfo={setUserInfo} />
         </Route>
         <Route path="/logout">
-          <h1>LOGOUT PAGE</h1>
+          <Logout setUserInfo={setUserInfo} />
         </Route>
         <Route path="/signup">
           <Signup setUserInfo={setUserInfo} />

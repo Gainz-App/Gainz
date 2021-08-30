@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 // React component to render signup form and send form data to server
-const Signup = (props) => {
+const Signup = ({ setUserInfo }) => {
   const [formVals, setFormVals] = useState({ email: '', name: '', password: '' });
   const [loggedIn, setLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -35,7 +35,7 @@ const Signup = (props) => {
           setErrorMessage(data.message);
           return;
         }
-        props.setUserInfo(data);
+        setUserInfo(data);
         setLoggedIn(true);
       })
       .catch((err) => console.error(err));
@@ -115,6 +115,12 @@ const Signup = (props) => {
           </p>
         )
           : null}
+        <p>
+          Already Have an Acccount?
+          <Link to="/login">
+            Log In
+          </Link>
+        </p>
       </section>
     );
   }
