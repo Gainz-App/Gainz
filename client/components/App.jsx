@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import React Components
 import Nav from './Nav.jsx';
@@ -44,6 +44,8 @@ const App = () => {
         </Route>
 
       </Switch>
+      {/* If not logged in force redirect to login page */}
+      {!userInfo.name ? <Redirect to="/login" /> : null}
 
     </div>
   );

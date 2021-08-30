@@ -4,6 +4,24 @@ import { Link } from 'react-router-dom';
 const Nav = ({ userInfo }) => {
   console.log('this is the navbar speaking', userInfo);
 
+  // Navbar when not signed in:
+  if (!userInfo.name) {
+    return (
+      <nav>
+        NavBar
+        <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Signup</Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+
+  // Signed in Navbar:
   return (
     <nav>
       NavBar
@@ -18,13 +36,7 @@ const Nav = ({ userInfo }) => {
           <Link to="/history">History</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
           <Link to="/logout">Logout</Link>
-        </li>
-        <li>
-          <Link to="/signup">Signup</Link>
         </li>
         <li>
           {userInfo.name
@@ -36,7 +48,7 @@ const Nav = ({ userInfo }) => {
                 {userInfo.email}
               </h4>
             )
-            : (<h4>Not logged in!</h4>)}
+            : null}
         </li>
       </ul>
     </nav>
