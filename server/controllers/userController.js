@@ -5,6 +5,15 @@ const userController = {};
 // createUser adds a new user to the database
 userController.createUser = (req, res, next) => {
   console.log('TRYING TO CREATE A NEW USER: ', req.body);
+
+  const { name, email, password } = req.body;
+
+  // Validate form data exists
+  if (!name || !email || !password) {
+    res.locals.error = { message: 'Missing Form Data!' };
+    return next();
+  }
+
   const newUserQ = `
   INSERT INTO users
   (name, email, password)
@@ -16,8 +25,7 @@ userController.createUser = (req, res, next) => {
   db.query(newUserQ, params)
     .then((data) => {
       console.log('CREATED NEW USER: ', data.rows);
-      res.locals.newUsersQuery = data.rows;
-      next();
+      return next();
     })
     .catch((err) => next({
       log: `Error in userController.createUser when trying create a new user: ERROR: ${err} `,

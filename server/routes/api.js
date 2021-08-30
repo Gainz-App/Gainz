@@ -25,7 +25,13 @@ router.post('/exercise',
 
 router.post('/signup',
   userController.createUser,
-  (req, res) => res.status(201).json(res.locals.newUsersQuery),
+  (req, res) => {
+    // Error when signing up
+    if (res.locals.error) {
+      return res.status(400).json(res.locals.error);
+    }
+    return res.status(201).json(res.locals.newUserQuery);
+  },
 );
 
 router.post('/login',
