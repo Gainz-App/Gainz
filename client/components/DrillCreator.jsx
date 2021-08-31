@@ -76,16 +76,22 @@ const DrillCreator = () => {
   return (
     <div className="drill">
       <h1>Create a new drill:</h1>
-      <li>
-        <ul>Exercise Name:{drillData.name}</ul>
-        <ul>Exercise Description:{drillData.description}</ul>
-        <ul>Exercise Type:{drillData.type}</ul>
-        <ul>Last Weight (LBs):{drillData.last_weight}</ul>
-        <ul>Last Reps:{drillData.last_reps}</ul>
-        <ul>Last Sets:{drillData.last_sets}</ul>
-        <ul>Last Rest (Mins):{drillData.last_rest}</ul>
-      </li>
-
+        <p>
+          <span>Exercise Name: </span>{drillData.name}</p>
+        <p>
+          <span>Exercise Description: </span>{drillData.description}</p>
+        <p>
+          <span>Exercise Type: </span>{drillData.type}</p>
+        <p>
+          <span>Last Weight (LBs): </span>{drillData.last_weight}</p>
+        <p>
+          <span>Last Reps: </span>{drillData.last_reps}</p>
+        <p>
+          <span>Last Sets: </span>{drillData.last_sets}</p>
+        <p>
+          <span>Last Rest (Mins): </span> {drillData.last_rest}
+        </p>
+    
       {/* DRILL INPUT FORM */}
       <form
         onSubmit={(e) => {
@@ -96,7 +102,9 @@ const DrillCreator = () => {
 
         {/* DRILL WEIGHT INPUT */}
         <label htmlFor="drillWeight">
-          Today&apos;s Weight (LBs):
+          <span>
+            Today&apos;s Weight (LBs):
+          </span>
           <input
             id="drillWeight"
             type="number"
@@ -114,7 +122,9 @@ const DrillCreator = () => {
 
         {/* DRILL SETS INPUT */}
         <label htmlFor="drillSets">
+        <span>
           Today&apos;s Sets:
+        </span>
           <input
             id="drillSets"
             type="number"
@@ -132,7 +142,9 @@ const DrillCreator = () => {
 
         {/* DRILL REPS INPUT */}
         <label htmlFor="drillReps">
-          Today&apos;s Reps:
+          <span>
+            Today&apos;s Reps:
+          </span>
           <input
             id="drillReps"
             type="number"
@@ -150,7 +162,9 @@ const DrillCreator = () => {
 
         {/*DRILL REST INPUT */}
         <label htmlFor="drillRest">
+        <span>
           Today&apos;s Rest Time (Mins):
+        </span>
           <input
             id="drillRest"
             type="number"

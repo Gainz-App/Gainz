@@ -24,7 +24,7 @@ const ExercisesDisplay = () => {
       {exerciseData.map((exercise, i) => {
         console.log('makes all data exercises');
         return (
-          <div key={exercise.name} className="exercise">
+          <div class="exercise" key={exercise.name} className="exercise">
             <h2>{exercise.name}</h2>
             <h3>Type: {exercise.typesname}</h3>
             <h3>Description: {exercise.description}</h3>
