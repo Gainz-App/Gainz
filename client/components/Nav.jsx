@@ -8,15 +8,8 @@ const Nav = ({ userInfo }) => {
   if (!userInfo.name) {
     return (
       <nav>
-        NavBar
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-        </ul>
+            <Link class="link" to="/login">Login</Link>
+            <Link class="link" to="/signup">Signup</Link>
       </nav>
     );
   }
@@ -24,33 +17,21 @@ const Nav = ({ userInfo }) => {
   // Signed in Navbar:
   return (
     <nav>
-      NavBar
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/ExerciseCreator">Create Exercise</Link>
-        </li>
-        <li>
-          <Link to="/history">History</Link>
-        </li>
-        <li>
-          <Link to="/logout">Logout</Link>
-        </li>
-        <li>
-          {userInfo.name
-            ? (
-              <h4>
-                Logged in as:
-                {userInfo.name}
-                -
-                {userInfo.email}
-              </h4>
-            )
-            : null}
-        </li>
-      </ul>
+          <Link class="link" to="/">Home</Link>
+          <Link class="link" to="/ExerciseCreator">Create Exercise</Link>
+          <Link class="link" to="/history">History</Link>
+          <p>
+            {userInfo.name
+              ? (
+                <h4>
+                  Logged in as:
+                  {userInfo.name}
+                  -
+                  {userInfo.email}
+                </h4>
+              )
+              : null}
+          </p>
     </nav>
   );
 };

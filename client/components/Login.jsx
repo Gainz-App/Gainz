@@ -54,7 +54,7 @@ const Login = ({ setUserInfo }) => {
   if (!loggedIn) {
     return (
       <section>
-        <h3>Login to WobbeGainz:</h3>
+        <h1>Login to WobbeGainz:</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -63,7 +63,7 @@ const Login = ({ setUserInfo }) => {
         >
           {/* EMAIL INPUT */}
           <label htmlFor="userEmail">Email Address:</label>
-          <input
+          <input 
             id="userEmail"
             type="email"
             placeholder="Email Address"
@@ -103,7 +103,7 @@ const Login = ({ setUserInfo }) => {
           : null}
         <p>
           No Account?
-          <Link to="/signup">
+          <Link class="link" to="/signup">
             Sign Up
           </Link>
         </p>
