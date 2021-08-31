@@ -92,7 +92,7 @@ userController.verifyUser = (req, res, next) => {
         throw new Error();
       }
 
-      res.locals.authUser = { name: user[0].name, email: user[0].email, id: user[0]._id };
+      res.locals.unAuthUser = { name: user[0].name, email: user[0].email, id: user[0]._id };
       // Check if passwords match:
       return bcrypt.compare(password, user[0].password);
     })
@@ -103,11 +103,13 @@ userController.verifyUser = (req, res, next) => {
       }
 
       // Login Successful
+      res.locals.authUser = res.locals.unAuthUser;
       return next();
     })
     .catch((err) => {
       // Handled login error to return with message
       if (res.locals.error) {
+        console.log('HANDLED LOGIN ERROR');
         return next();
       }
       return next({

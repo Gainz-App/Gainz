@@ -6,8 +6,9 @@ cookieController.setCookie = (req, res, next) => {
 };
 
 cookieController.setSSIDCookie = (req, res, next) => {
-//   const auth = authUser[0];
-  res.cookie('SSID', res.locals.authUser.id, { httpOnly: true });
+  if (res.locals.authUser) {
+    res.cookie('SSID', res.locals.authUser.id, { httpOnly: true });
+  }
   return next();
 };
 

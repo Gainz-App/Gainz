@@ -63,7 +63,7 @@ const Login = ({ setUserInfo }) => {
         >
           {/* EMAIL INPUT */}
           <label htmlFor="userEmail">Email Address:</label>
-          <input 
+          <input
             id="userEmail"
             type="email"
             placeholder="Email Address"

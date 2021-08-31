@@ -20,6 +20,7 @@ const Nav = ({ userInfo }) => {
           <Link class="link" to="/">Home</Link>
           <Link class="link" to="/ExerciseCreator">Create Exercise</Link>
           <Link class="link" to="/history">History</Link>
+          <Link class="link" to="/logout">Logout</Link>
           <p>
             {userInfo.name
               ? (
