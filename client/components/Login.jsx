@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React element to render login form and submit login to server
 const Login = ({ setUserInfo }) => {
@@ -26,7 +28,7 @@ const Login = ({ setUserInfo }) => {
       .then((response) => {
         // If login successful, set state for redirect
         console.log('LOGIN RESPONSE: ', response.status);
-        if (response.status === 200 || response.status === 400) {
+        if (response.status === 201 || response.status === 400) {
           return response.json();
         }
         throw new Error('Error when trying to login a user!');
@@ -54,59 +56,58 @@ const Login = ({ setUserInfo }) => {
   if (!loggedIn) {
     return (
       <section>
-        <h1>Login to WobbeGainz:</h1>
-        <form
+      <h1>Login to WobbeGainz:</h1>
+        <Form
           onSubmit={(e) => {
             e.preventDefault();
             login();
-          }}
-        >
-          {/* EMAIL INPUT */}
-          <label htmlFor="userEmail">Email Address:</label>
-          <input
-            id="userEmail"
-            type="email"
-            placeholder="Email Address"
-            onChange={(e) => {
-              console.log('Updated state: ', e.target.value);
-              updateFormVal('email', e.target.value);
-            }}
-            value={email}
-            name="email"
-            required
-          />
+          }}>
+          <Form.Group className="emailInput" controlId="email">
+            <Form.Label> Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                console.log('Updated state: ', e.target.value);
+                updateFormVal('email', e.target.value);
+              }} />
+            <Form.Text className="text-muted">
+              Your email is only used for gainz -- nothing else.
+            </Form.Text>
+          </Form.Group>
 
-          {/* PASSWORD INPUT */}
-          <label htmlFor="userPassword">Password:</label>
-          <input
-            id="userPassword"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => {
-              console.log('Updated state: ', e.target.value);
-              updateFormVal('password', e.target.value);
-            }}
-            value={password}
-            name="password"
-            required
-          />
+          <Form.Group className="passwordInput" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                console.log('Updated state: ', e.target.value);
+                updateFormVal('password', e.target.value);
+              }}
+              value={password}
+              required />
+          </Form.Group>
 
-          <button type="submit">Log In</button>
-        </form>
-        {/* LOGIN ERROR MESSAGE */}
+          <Button
+            variant="primary"
+            type="submit">
+            Submit
+          </Button>
+        </Form>
         {errorMessage ? (
-          <p>
-            Error:
-            {` ${errorMessage}`}
-          </p>
-        )
-          : null}
         <p>
-          No Account?
-          <Link class="link" to="/signup">
-            Sign Up
-          </Link>
+          Error:
+          {` ${errorMessage}`}
         </p>
+      )
+        : null}
+      <p>
+      No Account?
+      <Link className="link" to="/signup">
+        Sign Up
+      </Link>
+    </p>
       </section>
     );
   }

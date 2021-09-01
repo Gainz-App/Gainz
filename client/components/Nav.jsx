@@ -1,40 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
-const Nav = ({ userInfo }) => {
+const userNav = ({ userInfo }) => {
   console.log('this is the navbar speaking', userInfo);
 
   // Navbar when not signed in:
   if (!userInfo.name) {
     return (
-      <nav>
-            <Link class="link" to="/login">Login</Link>
-            <Link class="link" to="/signup">Signup</Link>
-      </nav>
+           <section>
+            <Nav variant="pills" defaultActiveKey="/login">
+
+            <Nav.Item>
+              <Nav.Link href="/login">Login</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link eventKey="/signup">Sign up</Nav.Link>
+            </Nav.Item>
+            </Nav>
+            </section>
+
     );
   }
 
   // Signed in Navbar:
   return (
-    <nav>
-          <Link class="link" to="/">Home</Link>
-          <Link class="link" to="/ExerciseCreator">Create Exercise</Link>
-          <Link class="link" to="/history">History</Link>
-          <Link class="link" to="/logout">Logout</Link>
-          <p>
-            {userInfo.name
-              ? (
-                <h4>
-                  Logged in as:
-                  {userInfo.name}
-                  -
-                  {userInfo.email}
-                </h4>
-              )
-              : null}
-          </p>
-    </nav>
+    <section>
+    <Nav variant="pills" defaultActiveKey="/home">
+  <Nav.Item>
+    <Nav.Link href="/home">Home</Nav.Link>
+  </Nav.Item>
+
+  <Nav.Item>
+    <Nav.Link eventKey="/ExerciseCreator">Create new exercise</Nav.Link>
+  </Nav.Item>
+
+  <Nav.Item>
+    <Nav.Link eventKey="/history">History</Nav.Link>
+  </Nav.Item>
+  
+  <Nav.Item>
+    <Nav.Link eventKey="/logout">Logout</Nav.Link>
+  </Nav.Item>
+</Nav>
+</section>
   );
 };
 
-export default Nav;
+export default userNav;
+

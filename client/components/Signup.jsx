@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React component to render signup form and send form data to server
 const Signup = ({ setUserInfo }) => {
@@ -52,62 +54,59 @@ const Signup = ({ setUserInfo }) => {
   if (!loggedIn) {
     return (
       <section>
-        <h3>Signup to WobbeGainz:</h3>
-        <form
+        <h1>Create a new user:</h1>
+        <Form
           onSubmit={(e) => {
             e.preventDefault();
             signup();
-          }}
-        >
-          {/* EMAIL INPUT */}
-          <label htmlFor="newUserEmail">Email Address:</label>
-          <input
-            id="newUserEmail"
-            type="email"
-            placeholder="Email Address"
-            onChange={(e) => {
-              console.log('Updated state: ', e.target.value);
-              updateFormVal('email', e.target.value);
-            }}
-            value={email}
-            name="email"
-            required
-          />
+          }}>
+          <Form.Group className="newUserEmail" controlId="newUserEmail">
+            <Form.Label> Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => {
+                console.log('Updated state: ', e.target.value);
+                updateFormVal('email', e.target.value);
+              }} />
+            <Form.Text className="text-muted">
+              Your email is only used for gainz -- nothing else.
+            </Form.Text>
+          </Form.Group>
 
-          {/* NAME INPUT */}
-          <label htmlFor="newUserName">Display Name:</label>
-          <input
-            id="newUserName"
-            type="text"
-            placeholder="Display Name"
-            onChange={(e) => {
-              console.log('Updated state: ', e.target.value);
-              updateFormVal('name', e.target.value);
-            }}
-            value={name}
-            name="display name"
-            required
-          />
+          <Form.Group className="newUserName" controlId="newUserName">
+            <Form.Label>Display Name</Form.Label>
+            <Form.Control
+              type="name"
+              placeholder="name"
+              onChange={(e) => {
+                console.log('Updated state: ', e.target.value);
+                updateFormVal('name', e.target.value);
+              }}
+              value={name}
+              required />
+          </Form.Group>
 
-          {/* PASSWORD INPUT */}
-          <label htmlFor="newUserPassword">Password:</label>
-          <input
-            id="newUserPassword"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => {
-              console.log('Updated state: ', e.target.value);
-              updateFormVal('password', e.target.value);
-            }}
-            value={password}
-            name="password"
-            required
-          />
+          <Form.Group className="newUserPassword" controlId="newUserPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                console.log('Updated state: ', e.target.value);
+                updateFormVal('password', e.target.value);
+              }}
+              value={password}
+              required />
+          </Form.Group>
 
-          <button type="submit">Sign Up</button>
-        </form>
-
-        {/* SIGNUP ERROR MESSAGE */}
+          <Button
+            variant="primary"
+            type="submit">
+            Sign Up
+          </Button>
+        </Form>
         {errorMessage ? (
           <p>
             Error:
@@ -116,7 +115,7 @@ const Signup = ({ setUserInfo }) => {
         )
           : null}
         <p>
-          Already Have an Acccount?
+          Already Have an Acccount? 
           <Link to="/login">
             Log In
           </Link>
