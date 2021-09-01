@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-
+import { Link, Redirect, useHistory } from 'react-router-dom';
+ 
 // React element allowing users to create a new exercise via form
-const ExerciseCreator = () => {
+const ExerciseCreator = ({ userInfo }) => {
+  console.log('this is the exerciseCreator speaking: ', userInfo)
+  let history = useHistory();
+
   const [redirect, setRedirect] = useState(false);
   const [formVals, setFormVals] = useState({
     name: '',
-    description: '',
+    // description: '',
     type_id: '1',
     init_weight: '',
     init_reps: '',
@@ -26,19 +29,20 @@ const ExerciseCreator = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        user_id: userInfo.id
       },
       body: JSON.stringify(formVals),
     })
       .then((response) => {
         // If creation successful, redirect to exercises
         console.log('CREATE RESPONSE: ', response.status);
-        if (response.status === 200) {
+        if (response.status === 201) {
           return response.json();
         }
         throw new Error('Error when trying to login a user!');
       }).then((data) => {
         console.log('Added new exercise: ', data);
-        setRedirect(true);
+        history.push('/');
       })
       .catch((err) => console.error(err));
   };
@@ -110,7 +114,7 @@ const ExerciseCreator = () => {
         <br />
 
         {/* EXERCISE DESCRIPTION INPUT */}
-        <label htmlFor="exerciseDescription">Exercise Description:</label>
+        {/* <label htmlFor="exerciseDescription">Exercise Description:</label>
         <textarea
           id="exerciseDescription"
           placeholder="Describe the exercise (position, equipment, movements...)"
@@ -122,7 +126,7 @@ const ExerciseCreator = () => {
           name="description"
           required
         />
-        <br />
+        <br /> */}
 
         {/* EXERCISE WEIGHT INPUT */}
         <label htmlFor="exerciseWeight">Starting Weight (LBs):</label>

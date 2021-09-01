@@ -28,7 +28,7 @@ const App = () => {
           <HistoryDisplay />
         </Route>
         <Route path="/ExerciseCreator">
-          <ExerciseCreator />
+          <ExerciseCreator userInfo={userInfo}/>
         </Route>
         <Route path="/login">
           <Login setUserInfo={setUserInfo} />
@@ -40,7 +40,7 @@ const App = () => {
           <Signup setUserInfo={setUserInfo} />
         </Route>
         <Route path="/">
-          <ExercisesDisplay />
+          <ExercisesDisplay userInfo={userInfo}/>
         </Route>
 
       </Switch>
