@@ -7,7 +7,6 @@ const DrillCreator = () => {
   const [redirect, setRedirect] = useState(false);
   const [formVals, setFormVals] = useState({
     exercise_id: id,
-    // add type ehre
     weight: '',
     sets: '',
     reps: '',
@@ -50,6 +49,7 @@ const DrillCreator = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        name: drillData.name
       },
       body: JSON.stringify(formVals),
     })

@@ -9,7 +9,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
+DROP TABLE IF EXISTS public.users cascade;
 CREATE TABLE public.users (
 	"_id" serial NOT NULL PRIMARY KEY,
 	"name" varchar NOT NULL,
@@ -17,6 +17,7 @@ CREATE TABLE public.users (
 	"password" varchar NOT NULL
 );
 
+DROP TABLE IF EXISTS public.user_sessions cascade;
 CREATE TABLE public.user_sessions (
   "_id" serial NOT NULL PRIMARY KEY,
   "user_id" bigint,
@@ -24,15 +25,17 @@ CREATE TABLE public.user_sessions (
   "ssid" varchar
 );
 
+DROP TABLE IF EXISTS public.types cascade;
 CREATE TABLE public.types (
   "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar
 );
 
+DROP TABLE IF EXISTS public.exercises cascade;
 CREATE TABLE public.exercises (
   "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar,
-  "description" varchar,
+  -- "description" varchar,
   "type_id" bigint,
   "user_id" bigint,
   "init_weight" int,
@@ -45,10 +48,11 @@ CREATE TABLE public.exercises (
   "last_rest" int
 );
 
+DROP TABLE IF EXISTS public.drills cascade;
 CREATE TABLE public.drills (
   "_id" serial NOT NULL PRIMARY KEY,
   "exercise_id" bigint,
-  -- add typoe here
+  "name" varchar,
   "weight" int,
   "reps" int,
   "sets" int,
@@ -71,7 +75,7 @@ INSERT INTO public.types (name) VALUES ('Lower Body');
 INSERT INTO public.types (name) VALUES ('Back');
 
 
-INSERT INTO public.users (_id, name, email, password) VALUES ('1', 'Omar', 'omar@gmail.com', '$2b$10$e0koG1AfGhVgw6omM4oYj.EguJnoatErT8a0O5RkDkDQwM3pe7QUG');
-INSERT INTO public.exercises (_id, name, description, type_id, user_id, init_weight, init_reps, init_sets, init_rest, last_weight, last_reps, last_sets, last_rest) VALUES ('1', 'Bench Press', 'Chest exercises on flat bench', '4', '1', '225', '8', '3', '1', '225', '8', '3', '1');
+-- INSERT INTO public.users (_id, name, email, password) VALUES ('1', 'Omar', 'omar@gmail.com', '$2b$10$e0koG1AfGhVgw6omM4oYj.EguJnoatErT8a0O5RkDkDQwM3pe7QUG');
+-- INSERT INTO public.exercises (_id, name, type_id, user_id, init_weight, init_reps, init_sets, init_rest, last_weight, last_reps, last_sets, last_rest) VALUES ('1', 'Bench Press', '4', '1', '225', '8', '3', '1', '225', '8', '3', '1');
 -- INSERT INTO public.drills (exercise_id, weight, reps, sets, rest_interval, date) VALUES ('123454321', '120', '20', '19', '30', current_timestamp);
 -- INSERT INTO public.user_sessions (user_id, created, ssid) VALUES ('123', current_timestamp, 'OMARSSID');

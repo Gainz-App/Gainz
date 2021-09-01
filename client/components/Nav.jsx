@@ -21,7 +21,7 @@ const Nav = ({ userInfo }) => {
           <Link class="link" to="/ExerciseCreator">Create Exercise</Link>
           <Link class="link" to="/history">History</Link>
           <Link class="link" to="/logout">Logout</Link>
-          <p>
+          <div>
             {userInfo.name
               ? (
                 <h4>
@@ -32,7 +32,7 @@ const Nav = ({ userInfo }) => {
                 </h4>
               )
               : null}
-          </p>
+          </div>
     </nav>
   );
 };

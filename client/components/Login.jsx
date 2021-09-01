@@ -26,7 +26,7 @@ const Login = ({ setUserInfo }) => {
       .then((response) => {
         // If login successful, set state for redirect
         console.log('LOGIN RESPONSE: ', response.status);
-        if (response.status === 200 || response.status === 400) {
+        if (response.status === 201 || response.status === 400) {
           return response.json();
         }
         throw new Error('Error when trying to login a user!');
