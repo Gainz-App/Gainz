@@ -7,6 +7,7 @@ const DrillCreator = () => {
   const [redirect, setRedirect] = useState(false);
   const [formVals, setFormVals] = useState({
     exercise_id: id,
+    // add type ehre
     weight: '',
     sets: '',
     reps: '',

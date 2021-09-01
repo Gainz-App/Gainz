@@ -24,7 +24,7 @@ router.get('/exercise/:id',
 
 router.post('/exercise',
   exerciseController.createExercise,
-  (req, res) => res.status(200).json(res.locals.newExercise),
+  (req, res) => res.status(201).json(res.locals.newExercise),
 );
 
 router.post('/drill',
@@ -54,7 +54,7 @@ router.post('/login',
       console.log('ERROR WHEN LOGGING IN');
       return res.status(400).json(res.locals.error);
     }
-    return res.status(200).json(res.locals.authUser);
+    return res.status(201).json(res.locals.authUser);
   },
 );
 

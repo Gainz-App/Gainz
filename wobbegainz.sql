@@ -48,6 +48,7 @@ CREATE TABLE public.exercises (
 CREATE TABLE public.drills (
   "_id" serial NOT NULL PRIMARY KEY,
   "exercise_id" bigint,
+  -- add typoe here
   "weight" int,
   "reps" int,
   "sets" int,
