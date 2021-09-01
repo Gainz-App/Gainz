@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import React Components
-import userNav from './Nav.jsx';
+import UserNav from './Nav.jsx';
 import ExercisesDisplay from './ExercisesDisplay.jsx';
 import ExerciseCreator from './ExerciseCreator.jsx';
 import DrillCreator from './DrillCreator.jsx';
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <userNav userInfo={userInfo} />
+      <UserNav userInfo={userInfo} />
 
       {/* React Router Switches */}
       <Switch>
