@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, Redirect } from 'react-router-dom';
 
@@ -41,6 +42,18 @@ const DrillCreator = () => {
     getExercise();
   }, []);
 
+  //convert exercise type_id to name
+  const pairs = {
+    '1': 'Arms', 
+    '2': 'Legs', 
+    '3': 'Core', 
+    '4': 'Upper Body', 
+    '5': 'Lower Body', 
+    '6': 'Back'
+  }
+  let type_name = pairs[drillData.type_id];
+
+
   // Function to submit drill form data to server, create new drill
   const createDrill = () => {
     console.log('trying to create new drill', formVals);
@@ -49,7 +62,8 @@ const DrillCreator = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        name: drillData.name
+        name: drillData.name, 
+        type: type_name
       },
       body: JSON.stringify(formVals),
     })
@@ -72,7 +86,7 @@ const DrillCreator = () => {
   // Redirect to home page if drill created successfully
   if (redirect === true) {
     return <Redirect to="/" />;
-  }
+  }  
 
   return (
     <div className="drill">
@@ -82,12 +96,8 @@ const DrillCreator = () => {
         {drillData.name}
       </p>
       <p>
-        <span>Exercise Description: </span>
-        {drillData.description}
-      </p>
-      <p>
         <span>Exercise Type: </span>
-        {drillData.type}
+        {type_name}
       </p>
       <p>
         <span>Last Weight (LBs): </span>
