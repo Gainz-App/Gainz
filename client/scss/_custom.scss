@@ -10,6 +10,9 @@ h1 {
   color: rgb(12, 12, 12);
   text-align: center;
 }
+body {
+  background-color: rgba(128, 128, 128, 0.226);  
+}
 
 .link {
   color: rgb(20, 108, 190);
@@ -32,4 +35,20 @@ input {
 
 span {
   font-weight: bold;
+}
+
+.exerciseCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center
 }
