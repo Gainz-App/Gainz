@@ -77,21 +77,34 @@ const DrillCreator = () => {
   return (
     <div className="drill">
       <h1>Create a new drill:</h1>
-        <p>
-          <span>Exercise Name: </span>{drillData.name}</p>
-        <p>
-          <span>Exercise Description: </span>{drillData.description}</p>
-        <p>
-          <span>Exercise Type: </span>{drillData.type}</p>
-        <p>
-          <span>Last Weight (LBs): </span>{drillData.last_weight}</p>
-        <p>
-          <span>Last Reps: </span>{drillData.last_reps}</p>
-        <p>
-          <span>Last Sets: </span>{drillData.last_sets}</p>
-        <p>
-          <span>Last Rest (Mins): </span> {drillData.last_rest}
-        </p>
+      <p>
+        <span>Exercise Name: </span>
+        {drillData.name}
+      </p>
+      <p>
+        <span>Exercise Description: </span>
+        {drillData.description}
+      </p>
+      <p>
+        <span>Exercise Type: </span>
+        {drillData.type}
+      </p>
+      <p>
+        <span>Last Weight (LBs): </span>
+        {drillData.last_weight}
+      </p>
+      <p>
+        <span>Last Reps: </span>
+        {drillData.last_reps}
+      </p>
+      <p>
+        <span>Last Sets: </span>
+        {drillData.last_sets}
+      </p>
+      <p>
+        <span>Last Rest (Mins): </span>
+        {drillData.last_rest}
+      </p>
     
       {/* DRILL INPUT FORM */}
       <form
