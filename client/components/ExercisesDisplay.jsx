@@ -33,6 +33,10 @@ const ExercisesDisplay = ({ userInfo }) => {
       <select
         id="exerciseType"
         onChange={(e) => {
+          if (e.target.value === "0") {
+            setCurExerciseData(exerciseData);
+            return;
+          }
           setCurExerciseData(exerciseData.filter((exercise) => {
             if (exercise.type_id === e.target.value) {
               return true;
@@ -43,7 +47,8 @@ const ExercisesDisplay = ({ userInfo }) => {
         name="exerciseType"
         required
       >
-        <option value="1" selected default>Arms</option>
+        <option value="0" selected default>All Exercises</option>
+        <option value="1">Arms</option>
         <option value="2">Legs</option>
         <option value="3">Core</option>
         <option value="4">Upper Body</option>
@@ -51,22 +56,24 @@ const ExercisesDisplay = ({ userInfo }) => {
         <option value="6">Back</option>
       </select>
 
-      <Carousel>
-        {curExerciseData.map((exercise) => (
-          <Carousel.Item>
-            <div className="exerciseCard" key={exercise._id}>
-              <div className="cardBody">
-                <div className="exerciseName"><h2>{exercise.name}</h2></div>
-                <div className="exerciseType"><h3>{exercise.typesname}</h3></div>
-                <div className="exerciseDescription"><p>{exercise.description}</p></div>
-                <Link to={`/drill/${exercise._id}`}>
-                  <button type="button">Start Drill</button>
-                </Link>
+      <div id="carouselDiv">
+        <Carousel>
+          {curExerciseData.map((exercise) => (
+            <Carousel.Item>
+              <div className="exerciseCard" key={exercise._id}>
+                <div className="cardBody">
+                  <div className="exerciseName"><h2>{exercise.typesname}</h2></div>
+                  <div className="exerciseType"><h3>{exercise.name}</h3></div>
+                  <div className="exerciseDescription"><p>{exercise.description}</p></div>
+                  <Link to={`/drill/${exercise._id}`}>
+                    <button type="button">Start Drill</button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
     </div>
   );
 };

@@ -10,9 +10,12 @@ h1 {
   color: rgb(12, 12, 12);
   text-align: center;
 }
-body {
-  background-color: rgba(128, 128, 128, 0.226);  
-}
+// .body {
+//   background-image: url("image.png");
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
 
 .link {
   color: rgb(20, 108, 190);
@@ -50,13 +53,24 @@ span {
   flex-direction: column;
   width: 100%;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  // background-color: rgba(128, 128, 128, 0.226);  
 }
 
 #historyDisplay {
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center;
-  align-items: space-between;
+  justify-content: space-between;
+  align-items: center;
+  background-color: grey;
+}
+
+#exerciseType {
+  width: 20%;
+  text-align: center;
+}
+
+#carouselDiv {
+  width: 100vw;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
  
 // React element allowing users to create a new exercise via form
 const ExerciseCreator = ({ userInfo }) => {
@@ -58,146 +59,126 @@ const ExerciseCreator = ({ userInfo }) => {
 
   return (
     <section>
-      <h3>Create a new Exercise:</h3>
-
-      {/* NEW EXERCISE FORM */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          createExercise();
-        }}
-      >
-
-        {/* EXERCISE NAME INPUT */}
-        <label htmlFor="exerciseName">Exercise Name:</label>
-        <input
-          id="exerciseName"
-          type="text"
-          placeholder="Exercise Name"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('name', e.target.value);
-          }}
-          value={name}
-          name="name"
-          required
-        />
-        <br />
-
-        {/* EXERCISE TYPE INPUT */}
-        <label htmlFor="exerciseType">Exercise Type:</label>
-        <select
-          id="exerciseType"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('type_id', e.target.value);
-          }}
-          name="exerciseType"
-          required
+        <h3>Create a new exercise:</h3>
+  
+  <Form
+    onSubmit={(e) => {
+    e.preventDefault();
+    createExercise();
+    }}
         >
-          <option value="1" selected>Arms</option>
-          <option value="2">Legs</option>
-          <option value="3">Core</option>
-          <option value="4">Upper Body</option>
-          <option value="5">Lower Body</option>
-          <option value="6">Back</option>
-        </select>
-        <br />
-
-        {/* EXERCISE DESCRIPTION INPUT */}
-        {/* <label htmlFor="exerciseDescription">Exercise Description:</label>
-        <textarea
-          id="exerciseDescription"
-          placeholder="Describe the exercise (position, equipment, movements...)"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('description', e.target.value);
-          }}
-          value={description}
-          name="description"
-          required
-        />
-        <br /> */}
-
-        {/* EXERCISE WEIGHT INPUT */}
-        <label htmlFor="exerciseWeight">Starting Weight (LBs):</label>
-        <input
-          id="exerciseWeight"
-          type="number"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('init_weight', e.target.value);
-          }}
-          value={init_weight}
-          name="weight"
-          min={1}
-        />
-        <br />
-
-        {/* EXERCISE SETS INPUT */}
-        <label htmlFor="exerciseSets">Starting Sets:</label>
-        <input
-          id="exerciseSets"
-          type="number"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('init_sets', e.target.value);
-          }}
-          value={init_sets}
-          name="sets"
-          min={1}
-        />
-        <br />
-
-        {/* EXERCISE REPS INPUT */}
-        <label htmlFor="exerciseReps">Starting Reps:</label>
-        <input
-          id="exerciseReps"
-          type="number"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('init_reps', e.target.value);
-          }}
-          value={init_reps}
-          name="reps"
-          min={1}
-        />
-        <br />
-
-        {/* EXERCISE REST INPUT */}
-        <label htmlFor="exerciseReps">Starting Rest Time:</label>
-        <input
-          id="exerciseRest"
-          type="number"
-          onChange={(e) => {
-            console.log('Updated createEx formVals: ', e.target.value);
-            updateFormVal('init_rest', e.target.value);
-          }}
-          value={init_rest}
-          name="rest"
-          min={1}
-        />
-        <br />
-
-        {/* FORM SUBMIT BUTTON */}
-        <button
-          type="submit"
-        >
-          Create Exercise
-        </button>
-
-        {/* FORM CANCEL BUTTON */}
-        <Link to="/">
-          <button
+          <Form.Group className="exerciseName" controlId="exerciseName">
+            <Form.Label>Exercise name:</Form.Label>
+            <Form.Control
+               type="text"
+               placeholder="Exercise Name"
+               onChange={(e) => {
+                 console.log('Updated createEx formVals: ', e.target.value);
+                 updateFormVal('name', e.target.value);
+               }}
+               value={name}
+               name="name"
+               required
+             />
+          </Form.Group>
+          
+          <Form.Group className="exerciseType" controlId="exerciseType"> 
+     
+            <Form.Select aria-label="Exercise type:" id="exerciseType"
+              onChange={(e) => {
+                console.log('Updated createEx formVals: ', e.target.value);
+                updateFormVal('type_id', e.target.value);
+              }}
+              name="exerciseType"
+              required
+            >
+              <option value="1" selected>Arms</option>
+              <option value="2">Legs</option>
+              <option value="3">Core</option>
+              <option value="4">Upper Body</option>
+              <option value="5">Lower Body</option>
+              <option value="6">Back</option>
+            </Form.Select>
+          </Form.Group>
+  
+  
+          <Form.Group className="exerciseWeight" controlId="exerciseWeight">
+            <Form.Label>Starting weight (in LBs):</Form.Label>
+            <Form.Control
+               
+               type="number"
+               onChange={(e) => {
+                 console.log('Updated createEx formVals: ', e.target.value);
+                 updateFormVal('init_weight', e.target.value);
+               }}
+               value={init_weight}
+               name="weight"
+               min={1}
+             />
+          </Form.Group>
+  
+          <Form.Group className="exerciseSets" controlId="exerciseSets">
+            <Form.Label>Starting sets:</Form.Label>
+            <Form.Control
+                 
+                 type="number"
+                 onChange={(e) => {
+                   console.log('Updated createEx formVals: ', e.target.value);
+                   updateFormVal('init_sets', e.target.value);
+                 }}
+                 value={init_sets}
+                 name="sets"
+                 min={1}
+               />
+          </Form.Group>
+  
+          <Form.Group className="exerciseReps" controlId="exerciseReps">
+            <Form.Label>Starting reps:</Form.Label>
+            <Form.Control
+                
+                type="number"
+                onChange={(e) => {
+                  console.log('Updated createEx formVals: ', e.target.value);
+                  updateFormVal('init_reps', e.target.value);
+                }}
+                value={init_reps}
+                name="reps"
+                min={1}
+              />
+          </Form.Group>
+  
+          <Form.Group className="exerciseRest" controlId="exerciseRest">
+            <Form.Label>Starting rest time:</Form.Label>
+            <Form.Control
+                type="number"
+                onChange={(e) => {
+                  console.log('Updated createEx formVals: ', e.target.value);
+                  updateFormVal('init_rest', e.target.value);
+                }}
+                value={init_rest}
+                name="rest"
+                min={1}
+              />
+              <br />
+          </Form.Group>
+  
+          <Button
+            variant="primary"
+            type="submit">
+            Create exercise
+          </Button>
+  
+          <Link to="/">
+          <Button
           type="button"
           >
-            Cancel
-          </button>
+        Cancel
+          </Button>
         </Link>
-
-      </form>
-    </section>
-  );
-};
+        </Form>
+  </section>
+  )
+              };
 
 export default ExerciseCreator;
+
