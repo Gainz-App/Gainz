@@ -53,6 +53,7 @@ CREATE TABLE public.drills (
   "_id" serial NOT NULL PRIMARY KEY,
   "exercise_id" bigint,
   "name" varchar,
+  "type_name" varchar,
   "weight" int,
   "reps" int,
   "sets" int,

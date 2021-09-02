@@ -24,6 +24,7 @@ exerciseController.getHistory = (req, res, next) => {
   db.query(drillQuery)
     .then((data) => {
       res.locals.drillQuery = data.rows;
+      console.log('DRILL HISTORY: ', res.locals.drillQuery)
       next();
     })
     .catch((err) => next({
@@ -59,14 +60,15 @@ exerciseController.createExercise = (req, res, next) => {
 exerciseController.createDrill = (req, res, next) => {
   console.log('REQUEST TO CREATE NEW DRILL SET', req.body);
   console.log('REQUEST TO CREATE NEW DRILL SET header', req.headers.name)
+  console.log('REQUEST TO CREATE NEW DRILL SET header', req.headers.type)
   const newDrillQ = `
   INSERT INTO drills 
-  (exercise_id, name, weight, reps, sets, rest_interval) 
-  VALUES ($1, $2, $3, $4, $5, $6) 
+  (exercise_id, name, type_name, weight, reps, sets, rest_interval) 
+  VALUES ($1, $2, $3, $4, $5, $6 , $7) 
   RETURNING *;
   `;
 
-  const drillParams = [req.body.exercise_id, req.headers.name, req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval];
+  const drillParams = [req.body.exercise_id, req.headers.name, req.headers.type, req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval];
   console.log('THIS IS DP', drillParams);
 
   db.query(newDrillQ, drillParams)
@@ -115,6 +117,7 @@ exerciseController.getExerciseDetails = (req, res, next) => {
   db.query(detailsQ, [req.params.id])
     .then((data) => {
       res.locals.exerciseDetails = data.rows[0];
+      console.log('exercise details: ', res.locals.exerciseDetails)
       return next();
     })
     .catch((err) => next({

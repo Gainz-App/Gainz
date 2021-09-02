@@ -24,7 +24,21 @@ const HistoryDisplay = () => {
   }, []);
 
   const drills = history.map((drill, i) => {
-    return <li key={drill._id}> Exercise: {drill.name} Date: {drill.date}, Weight: {drill.weight}, Sets: {drill.sets}, Reps: {drill.reps}, Rest: {drill.rest_interval} </li> 
+    return (
+      
+      <div key={drill._id}>
+        <div>Date: {drill.date}</div>
+        <div>
+          <div>{drill.type_name}</div>
+          <div>{drill.weight} lbs.</div>
+          <div>{drill.sets} Sets</div>
+        </div>
+        <div>
+          <div>{drill.name}</div>
+          <div>{drill.rest_interval}min intervals</div>
+          <div>{drill.reps} Reps</div>         
+        </div>
+      </div> )
   });
 
   return(
