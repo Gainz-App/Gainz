@@ -52,3 +52,11 @@ span {
   justify-content: center;
   align-items: center
 }
+
+#historyDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: space-between;
+}

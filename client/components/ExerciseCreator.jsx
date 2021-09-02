@@ -92,15 +92,6 @@ const ExerciseCreator = ({ userInfo }) => {
             console.log('Updated createEx formVals: ', e.target.value);
             updateFormVal('type_id', e.target.value);
           }}
-          // options={[
-          //   { label: 'Arms', value: 1 },
-          //   { label: 'Legs', value: 2 },
-          //   { label: 'Core', value: 3 },
-          //   { label: 'Upper Body', value: 4 },
-          //   { label: 'Lower Body', value: 5 },
-          //   { label: 'Back', value: 6 },
-          // ]}
-          // defaultValue={{ label: 'Arms', value: 1 }}
           name="exerciseType"
           required
         >

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const HistoryDisplay = () => {
   const [history, setHistory] = useState([]);
+  // const [curExerciseData, setCurExerciseData] = useState([]);
 
   const getHistory = () => {
     fetch('/api/history')

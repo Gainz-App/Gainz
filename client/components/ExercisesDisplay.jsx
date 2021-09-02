@@ -5,6 +5,7 @@ import { Carousel } from 'react-bootstrap';
 const ExercisesDisplay = ({ userInfo }) => {
   console.log('this is the exercise display speaking: ', userInfo);
   const [exerciseData, setExerciseData] = useState([]);
+  const [curExerciseData, setCurExerciseData] = useState([]);
 
   useEffect(() => {
     console.log('Getting data from server');
@@ -19,6 +20,7 @@ const ExercisesDisplay = ({ userInfo }) => {
       .then((exercises) => {
         console.log('exercises are', exercises);
         setExerciseData(exercises);
+        setCurExerciseData(exercises);
       })
       .catch((error) => {
         console.log('error on ExercisesDisplay', error);
@@ -26,10 +28,31 @@ const ExercisesDisplay = ({ userInfo }) => {
   }, []);
 
   return (
-    <div>
+    <div id="historyDisplay">
       <h1>Pick an Exercise:</h1>
+      <select
+        id="exerciseType"
+        onChange={(e) => {
+          setCurExerciseData(exerciseData.filter((exercise) => {
+            if (exercise.type_id === e.target.value) {
+              return true;
+            }
+            return false;
+          }));
+        }}
+        name="exerciseType"
+        required
+      >
+        <option value="1" selected default>Arms</option>
+        <option value="2">Legs</option>
+        <option value="3">Core</option>
+        <option value="4">Upper Body</option>
+        <option value="5">Lower Body</option>
+        <option value="6">Back</option>
+      </select>
+
       <Carousel>
-        {exerciseData.map((exercise) => (
+        {curExerciseData.map((exercise) => (
           <Carousel.Item>
             <div className="exerciseCard" key={exercise._id}>
               <div className="cardBody">
