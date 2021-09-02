@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React component to render signup form and send form data to server
@@ -53,16 +53,25 @@ const Signup = ({ setUserInfo }) => {
   // If not logged in render signup form
   if (!loggedIn) {
     return (
-      <section>
-        <h1>Create a new user:</h1>
+      <section id="signupContainer" className="centeredContainer">
+        <img id="logo" src="../assets/GAINZ_logo.png"></img>
+        <h1 id="createNewText">Create a new user:</h1>
         <Form
+          autoComplete="off"
+          id="signupForm"
           onSubmit={(e) => {
             e.preventDefault();
             signup();
           }}>
-          <Form.Group className="newUserEmail" controlId="newUserEmail">
-            <Form.Label> Email address</Form.Label>
+          <Form.Group className="newUserEmail" controlId="newUserEmail" autoComplete="off">
+            <FloatingLabel
+              autoComplete="off"
+              controlId="floatingEmail"
+              label="Email address"
+              className="floatEmail"
+              >
             <Form.Control
+              autoComplete="off"
               type="email"
               placeholder="Enter email"
               value={email}
@@ -70,14 +79,18 @@ const Signup = ({ setUserInfo }) => {
                 console.log('Updated state: ', e.target.value);
                 updateFormVal('email', e.target.value);
               }} />
-            <Form.Text className="text-muted">
-              Your email is only used for gainz -- nothing else.
-            </Form.Text>
+              </FloatingLabel>
+            
           </Form.Group>
 
           <Form.Group className="newUserName" controlId="newUserName">
-            <Form.Label>Display Name</Form.Label>
+            <FloatingLabel
+              controlId="floatingName"
+              label="Display name"
+              className="floatName"
+              >
             <Form.Control
+              autocomplete="off"
               type="name"
               placeholder="name"
               onChange={(e) => {
@@ -86,11 +99,17 @@ const Signup = ({ setUserInfo }) => {
               }}
               value={name}
               required />
+              </FloatingLabel>
           </Form.Group>
 
           <Form.Group className="newUserPassword" controlId="newUserPassword">
-            <Form.Label>Password</Form.Label>
+            <FloatingLabel
+              controlId="floatingPass"
+              label="Password"
+              className="floatPass"
+              >
             <Form.Control
+              autocomplete="off"
               type="password"
               placeholder="Password"
               onChange={(e) => {
@@ -99,9 +118,11 @@ const Signup = ({ setUserInfo }) => {
               }}
               value={password}
               required />
+              </FloatingLabel>
           </Form.Group>
 
           <Button
+            className="loginButtonId"
             variant="primary"
             type="submit">
             Sign Up
@@ -114,12 +135,16 @@ const Signup = ({ setUserInfo }) => {
           </p>
         )
           : null}
-        <p>
+        <p id="already">
           Already Have an Acccount? 
-          <Link to="/login">
-            Log In
-          </Link>
         </p>
+        
+        <Link className="link" to="/login">
+          <Button className="loginButtonId">
+            Log In
+          </Button>
+        </Link>
+        
       </section>
     );
   }

@@ -1,21 +1,26 @@
-/*
-### CUSTOM STYLES
-*/
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
-/*
-### OVERALL STYLES
-*/
+
+html {
+  height: 100vh;
+  width: 100vw;
+  --primary-color: #F8D948;
+  --secondary-color: #959A9C;
+  --primary-font: 'Alfa Slab One';
+  --secondary-font: 'Lato';
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
 
 h1 {
   color: rgb(12, 12, 12);
   text-align: center;
 }
-// .body {
-//   background-image: url("image.png");
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
+
 
 .link {
   color: rgb(20, 108, 190);
@@ -73,4 +78,121 @@ span {
 
 #carouselDiv {
   width: 100vw;
+}
+
+#logo {
+  height: auto;
+  width: 300px;
+}
+
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  
+}
+
+#loginContainer {
+  background-color: var(--primary-color);
+  width: 100vw;
+  
+}
+
+#loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+}
+
+#signupForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+}
+
+#signupContainer {
+  background-color: var(--primary-color);
+  width: 100vw;
+}
+
+.emailInput {
+  width: 80%;
+  margin: 10px;
+  margin-top: 0px;
+}
+
+.newUserEmail, .newUserName, .newUserPassword {
+  width: 80%;
+  margin: 10px;
+}
+
+.newUserPassword {
+  width: 80%;
+  margin-bottom: 25px;
+}
+
+.passwordInput {
+  width: 80%;
+  margin: 10px 0px 25px 0px;
+}
+
+#already{
+  margin: 5px 0px 5px 0px;
+  font-family: 'Lato';
+  font-size: 12pt;
+  color: rgb(90, 90, 90);
+}
+
+.loginButtonId {
+  margin: 0px 0px 0px 0px;
+  font-family: 'Lato';
+  background-color: var(--secondary-color) !important;
+  border-style: none !important;
+  box-shadow: 2px 5px rgba(62, 64, 65, 0.048);
+  width: 250px;
+  border-radius: 2px;
+  height: 35px;
+  font-size: 66px;
+}
+
+#noAccount {
+  margin: 5px 0px 5px 0px;
+  font-family: 'Lato';
+  font-size: 12pt;
+  color: rgb(90, 90, 90);
+}
+
+.link {
+  text-decoration: none;
+  margin: 0px;
+}
+
+#title {
+  font-size: 52pt;
+  font-family: var(--primary-font);
+  color: var(--secondary-color);
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#cardDisplay { 
+  background-color: var(--primary-color);
+}
+
+#createNewText{
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-family: var(--primary-font);
+  font-size: 20pt;
+  font-weight: 500;
+  color: var(--secondary-color)
 }

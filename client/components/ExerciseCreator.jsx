@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
  
 // React element allowing users to create a new exercise via form
 const ExerciseCreator = ({ userInfo }) => {
@@ -68,10 +68,15 @@ const ExerciseCreator = ({ userInfo }) => {
     }}
         >
           <Form.Group className="exerciseName" controlId="exerciseName">
-            <Form.Label>Exercise name:</Form.Label>
+            {/* <Form.Label>Exercise name:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingExercise"
+              label="Exercise name:"
+              className="floatExercise"
+              >
             <Form.Control
                type="text"
-               placeholder="Exercise Name"
+               placeholder="Exercise name"
                onChange={(e) => {
                  console.log('Updated createEx formVals: ', e.target.value);
                  updateFormVal('name', e.target.value);
@@ -80,6 +85,7 @@ const ExerciseCreator = ({ userInfo }) => {
                name="name"
                required
              />
+             </FloatingLabel>
           </Form.Group>
           
           <Form.Group className="exerciseType" controlId="exerciseType"> 
@@ -96,14 +102,19 @@ const ExerciseCreator = ({ userInfo }) => {
               <option value="2">Legs</option>
               <option value="3">Core</option>
               <option value="4">Upper Body</option>
-              <option value="5">Lower Body</option>
+              <option value="5">Calisthenics</option>
               <option value="6">Back</option>
             </Form.Select>
           </Form.Group>
   
   
           <Form.Group className="exerciseWeight" controlId="exerciseWeight">
-            <Form.Label>Starting weight (in LBs):</Form.Label>
+            {/* <Form.Label>Starting weight (in LBs):</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingWeight"
+              label="Starting weight (in LBs):"
+              className="floatWeight"
+              >
             <Form.Control
                
                type="number"
@@ -115,25 +126,36 @@ const ExerciseCreator = ({ userInfo }) => {
                name="weight"
                min={1}
              />
+             </FloatingLabel>
           </Form.Group>
   
           <Form.Group className="exerciseSets" controlId="exerciseSets">
-            <Form.Label>Starting sets:</Form.Label>
+            {/* <Form.Label>Starting sets:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingSets"
+              label="Starting sets:"
+              className="floatSets"
+              >
             <Form.Control
-                 
-                 type="number"
-                 onChange={(e) => {
+              type="number"
+              onChange={(e) => {
                    console.log('Updated createEx formVals: ', e.target.value);
                    updateFormVal('init_sets', e.target.value);
                  }}
-                 value={init_sets}
-                 name="sets"
-                 min={1}
+              value={init_sets}
+              name="sets"
+              min={1}
                />
+            </FloatingLabel>
           </Form.Group>
   
           <Form.Group className="exerciseReps" controlId="exerciseReps">
-            <Form.Label>Starting reps:</Form.Label>
+            {/* <Form.Label>Starting reps:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingReps"
+              label="Starting reps:"
+              className="floatReps"
+              >
             <Form.Control
                 
                 type="number"
@@ -145,10 +167,16 @@ const ExerciseCreator = ({ userInfo }) => {
                 name="reps"
                 min={1}
               />
+              </FloatingLabel>
           </Form.Group>
   
           <Form.Group className="exerciseRest" controlId="exerciseRest">
-            <Form.Label>Starting rest time:</Form.Label>
+            {/* <Form.Label>Starting rest time:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingRest"
+              label="Starting rest time:"
+              className="floatRest"
+              >
             <Form.Control
                 type="number"
                 onChange={(e) => {
@@ -160,6 +188,7 @@ const ExerciseCreator = ({ userInfo }) => {
                 min={1}
               />
               <br />
+              </FloatingLabel>
           </Form.Group>
   
           <Button

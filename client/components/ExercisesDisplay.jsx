@@ -52,7 +52,7 @@ const ExercisesDisplay = ({ userInfo }) => {
         <option value="2">Legs</option>
         <option value="3">Core</option>
         <option value="4">Upper Body</option>
-        <option value="5">Lower Body</option>
+        <option value="5">Calisthenics</option>
         <option value="6">Back</option>
       </select>
 

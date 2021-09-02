@@ -72,7 +72,7 @@ INSERT INTO public.types (name) VALUES ('Arms');
 INSERT INTO public.types (name) VALUES ('Legs');
 INSERT INTO public.types (name) VALUES ('Core');
 INSERT INTO public.types (name) VALUES ('Upper Body');
-INSERT INTO public.types (name) VALUES ('Lower Body');
+INSERT INTO public.types (name) VALUES ('Calisthenics');
 INSERT INTO public.types (name) VALUES ('Back');
 
 

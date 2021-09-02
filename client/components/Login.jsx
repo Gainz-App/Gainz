@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React element to render login form and submit login to server
@@ -55,59 +55,82 @@ const Login = ({ setUserInfo }) => {
   // If not logged in render login form
   if (!loggedIn) {
     return (
-      <section>
-      <h1>Login to WobbeGainz:</h1>
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            login();
-          }}>
-          <Form.Group className="emailInput" controlId="email">
-            <Form.Label> Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              onChange={(e) => {
-                console.log('Updated state: ', e.target.value);
-                updateFormVal('email', e.target.value);
-              }} />
-            <Form.Text className="text-muted">
-              Your email is only used for gainz -- nothing else.
-            </Form.Text>
-          </Form.Group>
+      <section id="loginContainer" className="centeredContainer">
+        <img id="logo" src="../assets/GAINZ_logo.png"></img>
+        <h1 id="title">GAINZ</h1>
+          <Form
+            autoComplete="off"
+            id="loginForm"
+          
+            onSubmit={(e) => {
+              e.preventDefault();
+              login();
+            }}>
+            <Form.Group className="emailInput" controlId="email" autoComplete="off">
 
-          <Form.Group className="passwordInput" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => {
-                console.log('Updated state: ', e.target.value);
-                updateFormVal('password', e.target.value);
-              }}
-              value={password}
-              required />
-          </Form.Group>
+              <FloatingLabel
+                autoComplete="off"
+                controlId="floatingEmail"
+                label="Email address"
+                className="floatEmail"
+              >
+              <Form.Control
+                autoComplete="off"
+                className="inputInput"
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  console.log('Updated state: ', e.target.value);
+                  updateFormVal('email', e.target.value);
+                }} />
+                </FloatingLabel>
+            </Form.Group>
 
-          <Button
-            variant="primary"
-            type="submit">
-            Submit
-          </Button>
-        </Form>
-        {errorMessage ? (
-        <p>
-          Error:
-          {` ${errorMessage}`}
+            <Form.Group className="passwordInput" controlId="password">
+              <FloatingLabel
+                controlId="floatingPass"
+                label="Password"
+                className="floatPass"
+              >
+              <Form.Control
+                type="password"
+                size="sm"
+                placeholder="Enter password"
+                onChange={(e) => {
+                  console.log('Updated state: ', e.target.value);
+                  updateFormVal('password', e.target.value);
+                }}
+                value={password}
+                required />
+                </FloatingLabel>
+            </Form.Group>
+
+            <Button
+              className="loginButtonId"
+              variant="primary"
+              type="submit">
+              Login
+            </Button>
+          </Form>
+          {errorMessage ? (
+          <p>
+            Error:
+            {` ${errorMessage}`}
+          </p>
+        )
+          : null}
+        <p id="noAccount">
+        No Account?
         </p>
-      )
-        : null}
-      <p>
-      No Account?
-      <Link className="link" to="/signup">
-        Sign Up
-      </Link>
-    </p>
+        
+          
+        <Link className="link" to="/signup">
+          <Button className="loginButtonId">
+            Sign Up
+          </Button>
+        </Link>
+        
+        
       </section>
     );
   }

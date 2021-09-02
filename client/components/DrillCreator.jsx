@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, Redirect } from 'react-router-dom';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
+
 
 const DrillCreator = () => {
   const { id } = useParams();
@@ -90,138 +92,142 @@ const DrillCreator = () => {
 
   return (
     <div className="drill">
-      <h1>Create a new drill:</h1>
-      <p>
-        <span>Exercise Name: </span>
-        {drillData.name}
-      </p>
-      <p>
-        <span>Exercise Type: </span>
-        {type_name}
-      </p>
-      <p>
-        <span>Last Weight (LBs): </span>
-        {drillData.last_weight}
-      </p>
-      <p>
-        <span>Last Reps: </span>
-        {drillData.last_reps}
-      </p>
-      <p>
-        <span>Last Sets: </span>
-        {drillData.last_sets}
-      </p>
-      <p>
-        <span>Last Rest (Mins): </span>
-        {drillData.last_rest}
-      </p>
-    
-      {/* DRILL INPUT FORM */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          createDrill();
-        }}
-      >
+    <h1>Create a new drill:</h1>
+    <p>
+      <span>Exercise Name: </span>
+      {drillData.name}
+    </p>
+    <p>
+      <span>Exercise Type: </span>
+      {type_name}
+    </p>
+    <p>
+      <span>Last Weight (LBs): </span>
+      {drillData.last_weight}
+    </p>
+    <p>
+      <span>Last Reps: </span>
+      {drillData.last_reps}
+    </p>
+    <p>
+      <span>Last Sets: </span>
+      {drillData.last_sets}
+    </p>
+    <p>
+      <span>Last Rest (Mins): </span>
+      {drillData.last_rest}
+    </p>
 
-        {/* DRILL WEIGHT INPUT */}
-        <label htmlFor="drillWeight">
-          <span>
-            Today&apos;s Weight (LBs):
-          </span>
-          <input
-            id="drillWeight"
-            type="number"
-            name="weight"
-            value={weight}
-            onChange={(e) => {
-              console.log('Updated formVals in DrillCreator: ', e.target.value);
-              updateFormVal('weight', e.target.value);
-            }}
-            min={1}
-            required
-          />
-        </label>
-        <br />
-
-        {/* DRILL SETS INPUT */}
-        <label htmlFor="drillSets">
-        <span>
-          Today&apos;s Sets:
-        </span>
-          <input
-            id="drillSets"
-            type="number"
-            name="sets"
-            value={sets}
-            onChange={(e) => {
-              console.log('updated formVals in DrillCreator', e.target.value);
-              updateFormVal('sets', e.target.value);
-            }}
-            min={1}
-            required
-          />
-        </label>
-        <br />
-
-        {/* DRILL REPS INPUT */}
-        <label htmlFor="drillReps">
-          <span>
-            Today&apos;s Reps:
-          </span>
-          <input
-            id="drillReps"
-            type="number"
-            name="reps"
-            value={reps}
-            onChange={(e) => {
-              console.log('updated formVals in DrillCreator', e.target.value);
-              updateFormVal('reps', e.target.value);
-            }}
-            min={1}
-            required
-          />
-        </label>
-        <br />
-
-        {/*DRILL REST INPUT */}
-        <label htmlFor="drillRest">
-        <span>
-          Today&apos;s Rest Time (Mins):
-        </span>
-          <input
-            id="drillRest"
-            type="number"
-            name="rest"
-            value={rest_interval}
-            onChange={(e) => {
-              console.log('updated formVals in DrillCreator', e.target.value);
-              updateFormVal('rest_interval', e.target.value);
-            }}
-            min={1}
-            required
-          />
-        </label>
-        <br />
-
-        {/* FORM SUBMIT BUTTON */}
-        <button
-          type="submit"
+  <Form
+    onSubmit={(e) => {
+    e.preventDefault();
+    createDrill();
+    }}
         >
-          Submit
-        </button>
-
-        {/* FORM CANCEL BUTTON */}
-        <Link to="/">
-          <button
-            type="button"
+          <Form.Group className="drillWeight" controlId="drillWeight">
+            {/* <Form.Label>Exercise name:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingToday"
+              label="Today's weight (in LBs):"
+              className="floatToday"
+              >
+            <Form.Control
+              id="drillWeight"
+              type="number"
+              name="weight"
+              value={weight}
+              onChange={(e) => {
+                console.log('Updated formVals in DrillCreator: ', e.target.value);
+                updateFormVal('weight', e.target.value);
+              }}
+              min={1}
+              required
+            />
+             </FloatingLabel>
+          </Form.Group>
+          
+          
+            <Form.Group className="drillSets" controlId="drillSets">
+            {/* <Form.Label>Starting weight (in LBs):</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingDrills"
+              label="Today's sets:"
+              className="floatDrills"
+              >
+            <Form.Control
+              id="drillSets"
+              type="number"
+              name="sets"
+              value={sets}
+              onChange={(e) => {
+                console.log('updated formVals in DrillCreator', e.target.value);
+                updateFormVal('sets', e.target.value);
+              }}
+              min={1}
+              required
+            />
+             </FloatingLabel>
+          </Form.Group>
+  
+          <Form.Group className="drillReps" controlId="drillReps">
+            {/* <Form.Label>Starting sets:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingReps"
+              label="Today's sets:"
+              className="floatReps"
+              >
+            <Form.Control
+              id="drillReps"
+              type="number"
+              name="reps"
+              value={reps}
+              onChange={(e) => {
+                console.log('updated formVals in DrillCreator', e.target.value);
+                updateFormVal('reps', e.target.value);
+              }}
+              min={1}
+              required
+            />
+            </FloatingLabel>
+          </Form.Group>
+  
+          <Form.Group className="drillRest" controlId="drillRest">
+            {/* <Form.Label>Starting reps:</Form.Label> */}
+            <FloatingLabel
+              controlId="floatingRest"
+              label="Today's rest time"
+              className="floatRest"
+              >
+            <Form.Control
+               id="drillRest"
+               type="number"
+               name="rest"
+               value={rest_interval}
+               onChange={(e) => {
+                 console.log('updated formVals in DrillCreator', e.target.value);
+                 updateFormVal('rest_interval', e.target.value);
+               }}
+               min={1}
+               required
+             />
+              </FloatingLabel>
+          </Form.Group>
+  
+        <Button
+            variant="primary"
+            type="submit">
+            Submit drill
+          </Button>
+  
+          <Link to="/">
+          <Button
+          type="button"
           >
-            Cancel
-          </button>
+        Cancel
+          </Button>
         </Link>
-
-      </form>
-    </div>
+        </Form>
+  </div>
   );
 };
 

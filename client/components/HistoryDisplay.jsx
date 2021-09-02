@@ -44,7 +44,7 @@ const HistoryDisplay = () => {
 
   return(
     <div>
-      <h1>Drill History:</h1>
+      <h1>Gainz History:</h1>
       <ul>
         {drills}
       </ul>

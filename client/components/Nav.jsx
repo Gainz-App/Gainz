@@ -9,14 +9,14 @@ const UserNav = ({ userInfo }) => {
   if (!userInfo.name) {
     return (
       <div>
-        <Nav variant="pills" defaultActiveKey="/login">
+        {/* <Nav variant="pills" defaultActiveKey="/login">
           <Nav.Item>
             <Nav.Link as={Link} to="/login" href="/login">Login</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link as={Link} to="/signup" eventKey="/signup" href="/signup">Sign up</Nav.Link>
           </Nav.Item>
-        </Nav>
+        </Nav> */}
       </div>
     );
   }
