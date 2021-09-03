@@ -22,10 +22,10 @@ const App = () => {
       {/* React Router Switches */}
       <Switch>
         <Route path="/drill/:id">
-          <DrillCreator />
+          <DrillCreator userInfo={userInfo}/>
         </Route>
         <Route path="/history">
-          <HistoryDisplay />
+          <HistoryDisplay userInfo={userInfo}/>
         </Route>
         <Route path="/ExerciseCreator">
           <ExerciseCreator userInfo={userInfo}/>

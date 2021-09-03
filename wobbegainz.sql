@@ -35,7 +35,6 @@ DROP TABLE IF EXISTS public.exercises cascade;
 CREATE TABLE public.exercises (
   "_id" serial NOT NULL PRIMARY KEY,
   "name" varchar,
-  -- "description" varchar,
   "type_id" bigint,
   "user_id" bigint,
   "init_weight" int,
@@ -52,6 +51,7 @@ DROP TABLE IF EXISTS public.drills cascade;
 CREATE TABLE public.drills (
   "_id" serial NOT NULL PRIMARY KEY,
   "exercise_id" bigint,
+  "user_id" bigint,
   "name" varchar,
   "type_name" varchar,
   "weight" int,

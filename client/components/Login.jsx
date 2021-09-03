@@ -59,23 +59,23 @@ const Login = ({ setUserInfo }) => {
         <img id="logo" src="../assets/GAINZ_logo.png"></img>
         <h1 id="title">GAINZ</h1>
           <Form
-            autoComplete="off"
+            autoComplete="on"
             id="loginForm"
           
             onSubmit={(e) => {
               e.preventDefault();
               login();
             }}>
-            <Form.Group className="emailInput" controlId="email" autoComplete="off">
+            <Form.Group className="emailInput" controlId="email" autoComplete="on">
 
               <FloatingLabel
-                autoComplete="off"
+                autoComplete="on"
                 controlId="floatingEmail"
                 label="Email address"
                 className="floatEmail"
               >
               <Form.Control
-                autoComplete="off"
+                autoComplete="on"
                 className="inputInput"
                 type="email"
                 placeholder="Enter email"
@@ -123,7 +123,6 @@ const Login = ({ setUserInfo }) => {
         No Account?
         </p>
         
-          
         <Link className="link" to="/signup">
           <Button className="loginButtonId">
             Sign Up

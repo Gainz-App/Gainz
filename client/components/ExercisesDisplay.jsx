@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Button, Form } from 'react-bootstrap';
 
 const ExercisesDisplay = ({ userInfo }) => {
   console.log('this is the exercise display speaking: ', userInfo);
@@ -29,9 +29,9 @@ const ExercisesDisplay = ({ userInfo }) => {
 
   return (
     <div id="historyDisplay">
-      <h1>Pick an Exercise:</h1>
-      <select
-        id="exerciseType"
+      <h1 className="pageMainText">Pick an exercise:</h1>
+      <Form.Select
+        id="exerciseSelector"
         onChange={(e) => {
           if (e.target.value === "0") {
             setCurExerciseData(exerciseData);
@@ -54,9 +54,9 @@ const ExercisesDisplay = ({ userInfo }) => {
         <option value="4">Upper Body</option>
         <option value="5">Calisthenics</option>
         <option value="6">Back</option>
-      </select>
+      </Form.Select>
 
-      <div id="carouselDiv">
+      <div id="carouselDiv" className="centeredContainer">
         <Carousel>
           {curExerciseData.map((exercise) => (
             <Carousel.Item>
@@ -64,9 +64,9 @@ const ExercisesDisplay = ({ userInfo }) => {
                 <div className="cardBody">
                   <div className="exerciseName"><h2>{exercise.typesname}</h2></div>
                   <div className="exerciseType"><h3>{exercise.name}</h3></div>
-                  <div className="exerciseDescription"><p>{exercise.description}</p></div>
+                  <img src={`../assets/image${exercise.type_id}.png`}></img>
                   <Link to={`/drill/${exercise._id}`}>
-                    <button type="button">Start Drill</button>
+                    <Button id="drillButton" type="button">Start Drill</Button>
                   </Link>
                 </div>
               </div>

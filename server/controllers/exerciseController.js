@@ -20,7 +20,8 @@ exerciseController.getExercises = (req, res, next) => {
 
 exerciseController.getHistory = (req, res, next) => {
   console.log('IN GET HISTORY');
-  const drillQuery = 'SELECT * FROM drills';
+  console.log(req.headers.user_id);
+  const drillQuery = `SELECT * FROM drills WHERE user_id = ${req.headers.user_id}`;
   db.query(drillQuery)
     .then((data) => {
       res.locals.drillQuery = data.rows;
@@ -38,7 +39,7 @@ exerciseController.createExercise = (req, res, next) => {
   console.log('user id is: ', req.headers.user_id);
   const createQ = `INSERT INTO exercises
   (name, type_id, user_id, init_weight, init_reps, init_sets, last_weight, last_reps, last_sets)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+  VALUES ($1, $2, $3, $4, $5, $6 , $7, $8, $9) 
   RETURNING *`;
 
   // CURRENTLY HARD CODING USERID HERE TO MAKE THIS WORK OK - CHANGE WHEN SESSIONS DONE
@@ -63,12 +64,12 @@ exerciseController.createDrill = (req, res, next) => {
   console.log('REQUEST TO CREATE NEW DRILL SET header', req.headers.type)
   const newDrillQ = `
   INSERT INTO drills 
-  (exercise_id, name, type_name, weight, reps, sets, rest_interval) 
-  VALUES ($1, $2, $3, $4, $5, $6 , $7) 
+  (exercise_id, user_id, name, type_name, weight, reps, sets, rest_interval) 
+  VALUES ($1, $2, $3, $4, $5, $6 , $7, $8) 
   RETURNING *;
   `;
 
-  const drillParams = [req.body.exercise_id, req.headers.name, req.headers.type, req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval];
+  const drillParams = [req.body.exercise_id, req.headers.user_id, req.headers.name, req.headers.type, req.body.weight, req.body.reps, req.body.sets, req.body.rest_interval];
   console.log('THIS IS DP', drillParams);
 
   db.query(newDrillQ, drillParams)

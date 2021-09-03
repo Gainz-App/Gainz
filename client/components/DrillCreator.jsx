@@ -4,7 +4,7 @@ import { useParams, Link, Redirect } from 'react-router-dom';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 
 
-const DrillCreator = () => {
+const DrillCreator = ({ userInfo }) => {
   const { id } = useParams();
   const [drillData, setDrillData] = useState({});
   const [redirect, setRedirect] = useState(false);
@@ -65,7 +65,8 @@ const DrillCreator = () => {
       headers: {
         'Content-Type': 'application/json',
         name: drillData.name, 
-        type: type_name
+        type: type_name, 
+        user_id: userInfo.id
       },
       body: JSON.stringify(formVals),
     })
@@ -91,8 +92,11 @@ const DrillCreator = () => {
   }  
 
   return (
-    <div className="drill">
-    <h1>Create a new drill:</h1>
+    <div className="drillCreatorContainer">
+      
+    <h3 className="pageMainText">Create drill:</h3>
+    <div id="drill2Container"> 
+    <div id="drillInfo">
     <p>
       <span>Exercise Name: </span>
       {drillData.name}
@@ -117,8 +121,9 @@ const DrillCreator = () => {
       <span>Last Rest (Mins): </span>
       {drillData.last_rest}
     </p>
-
+    </div>
   <Form
+  id="drillCreatorForm"
     onSubmit={(e) => {
     e.preventDefault();
     createDrill();
@@ -132,6 +137,7 @@ const DrillCreator = () => {
               className="floatToday"
               >
             <Form.Control
+              className="drillInput"
               id="drillWeight"
               type="number"
               name="weight"
@@ -155,6 +161,7 @@ const DrillCreator = () => {
               className="floatDrills"
               >
             <Form.Control
+              className="drillInput"
               id="drillSets"
               type="number"
               name="sets"
@@ -173,10 +180,11 @@ const DrillCreator = () => {
             {/* <Form.Label>Starting sets:</Form.Label> */}
             <FloatingLabel
               controlId="floatingReps"
-              label="Today's sets:"
+              label="Today's reps:"
               className="floatReps"
               >
             <Form.Control
+              className="drillInput"
               id="drillReps"
               type="number"
               name="reps"
@@ -199,21 +207,23 @@ const DrillCreator = () => {
               className="floatRest"
               >
             <Form.Control
-               id="drillRest"
-               type="number"
-               name="rest"
-               value={rest_interval}
-               onChange={(e) => {
-                 console.log('updated formVals in DrillCreator', e.target.value);
-                 updateFormVal('rest_interval', e.target.value);
-               }}
-               min={1}
-               required
-             />
+              className="drillInput"
+              id="drillRest"
+              type="number"
+              name="rest"
+              value={rest_interval}
+              onChange={(e) => {
+                console.log('updated formVals in DrillCreator', e.target.value);
+                updateFormVal('rest_interval', e.target.value);
+              }}
+              min={1}
+              required
+            />
               </FloatingLabel>
           </Form.Group>
-  
+            <div className="exerciseButtonDiv"></div>
         <Button
+            className="exerciseButton asdf"
             variant="primary"
             type="submit">
             Submit drill
@@ -221,12 +231,14 @@ const DrillCreator = () => {
   
           <Link to="/">
           <Button
+          className="exerciseButton"
           type="button"
           >
         Cancel
           </Button>
         </Link>
         </Form>
+    </div>
   </div>
   );
 };

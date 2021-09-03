@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
 html {
-  height: 100vh;
-  width: 100vw;
   --primary-color: #F8D948;
   --secondary-color: #959A9C;
   --primary-font: 'Alfa Slab One';
   --secondary-font: 'Lato';
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
   margin: 0px;
   padding: 0px;
+  background-color: var(--secondary-color);
 }
 
 h1 {
@@ -21,6 +22,9 @@ h1 {
   text-align: center;
 }
 
+h3 .pageMainText {
+  font-family: var(--primary-font);
+}
 
 .link {
   color: rgb(20, 108, 190);
@@ -66,18 +70,12 @@ span {
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: space-between;
+  height: 100%;
+  justify-content: center;
   align-items: center;
-  background-color: grey;
-}
-
-#exerciseType {
-  width: 20%;
-  text-align: center;
-}
-
-#carouselDiv {
-  width: 100vw;
+  background-color: var(--secondary-color);
+  font-family: var(--secondary-font);
+  padding-bottom: 80px;
 }
 
 #logo {
@@ -95,10 +93,19 @@ span {
   margin: 0px;
   
 }
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  width: 100%;
+  background-color: #959A9C;
+  height: 100%;
+  padding-top: 25px;
+}
 
 #loginContainer {
   background-color: var(--primary-color);
-  width: 100vw;
+  width: 100%;
   
 }
 
@@ -120,7 +127,7 @@ span {
 
 #signupContainer {
   background-color: var(--primary-color);
-  width: 100vw;
+  width: 100%;
 }
 
 .emailInput {
@@ -160,7 +167,6 @@ span {
   width: 250px;
   border-radius: 2px;
   height: 35px;
-  font-size: 66px;
 }
 
 #noAccount {
@@ -195,4 +201,270 @@ span {
   font-size: 20pt;
   font-weight: 500;
   color: var(--secondary-color)
+}
+
+.pageMainText {
+  font-family: var(--primary-font);
+  font-size: 24pt;
+  color: var(--primary-color);
+}
+
+#exerciseSelector {
+  width: 290px;
+  margin-bottom: 15px;
+}
+
+.exerciseType {
+  margin: 0px;
+}
+
+.exerciseType h3 {
+  font-weight: 400;
+}
+
+#carouselDiv {
+  height: 50%;
+  width: 290px;
+  background-color: white;
+  border-radius: 5px;
+  color: var(--secondary-color)
+}
+
+#navbar {
+  background-color: var(--primary-color);
+  margin: 0px;
+  height: 42px;
+  padding: -42px;
+}
+
+.nav, .nav-item, .nav-link {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+#drillButton {
+  margin-bottom: 50px;
+  font-family: 'Lato';
+  background-color: var(--primary-color) !important;
+  border-style: none !important;
+  box-shadow: 2px 5px rgba(62, 64, 65, 0.048);
+  width: 150px;
+  border-radius: 2px;
+  height: 35px;
+  color: white;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+.cardBody {
+  width: 100%;
+}
+
+.exerciseCard {
+  width: 100%;
+}
+
+.carousel, .slide {
+  width: 100%;
+}
+
+.carousel-indicators button {
+  background-color: var(--secondary-color) !important;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  color: var(--secondary-color) !important;
+}
+
+.exerciseName h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.container {
+  width: 100%;
+  background-color: #959A9C;
+}
+
+.drillContainer {
+  display: center;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // height: 100%;
+  // width: 100%;
+  // margin: 0px;
+}
+
+.drillFirstRow {
+  box-shadow: 10px 5px 5px black;
+  background-color: #F8D948;;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: var(--primary-font)
+}
+
+.drillSecondRow {
+  box-shadow: 10px 5px 5px black;;
+  background-color: #F8D948;;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: var(--primary-font)
+}
+
+.drillThirdRow {
+  box-shadow: 10px 5px 5px black;
+  background-color: #F8D948;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: var(--primary-font)
+}
+// .centeredContainer {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100%;
+//   width: 100%;
+//   margin: 0px;
+  
+// }
+.drillRow {
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+}
+
+.drill {
+  background-color: var(--secondary-color);
+}
+
+.drillRow div {
+  width: 33%;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link.active {
+  background-color: #959A9C !important;
+}
+.exerciseButton {
+  background-color:#F8D948 !important;
+  color:white !important;
+  border: #F8D948 !important;
+}
+
+#exerciseCreatorContainer {
+  background-color: var(--secondary-color);
+  margin: 0px;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+#exerciseForm {
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+}
+
+#exerciseType {
+  height: 58px;
+}
+
+.exerciseButtonDiv > * {
+  width: 50%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#exerciseButtonDiv {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.exerciseButton {
+  width: 100%;
+}
+
+.drillCreatorContainer {
+  height: 100%;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
+#drill2Container {
+  height: 60%;
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+#drillInfo {
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#drillInfo p {
+  padding-left: 5px;
+}
+
+h3.pageMainText {
+  text-align: center;
+  
+}
+
+.drillCreatorContainer h3.pageMainText {
+  padding-bottom: 70px;
+}
+
+.drillInput {
+  width: 100%;
+}
+
+#drillCreatorForm {
+  width: 100%;
+}
+
+.pageMainText {
+  margin: 15px;
+}
+
+.floatRest {
+  height: 68px;
+}
+
+#drillRest {
+  margin-bottom: 15px;
+}
+
+.asdf {
+  margin-bottom: 5px;
 }

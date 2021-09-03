@@ -23,14 +23,14 @@ const UserNav = ({ userInfo }) => {
 
   // Signed in Navbar:
   return (
-    <section>
-      <Nav variant="pills" defaultActiveKey="/home">
+    <section id="navbar">
+      <Nav fill variant="tabs" defaultActiveKey="/home">
         <Nav.Item>
           <Nav.Link href="/home" as={Link} to="/home" href="/home">Home</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link eventKey="/ExerciseCreator" as={Link} to="/ExerciseCreator" href="/ExerciseCreator">Create new exercise</Nav.Link>
+          <Nav.Link eventKey="/ExerciseCreator" as={Link} to="/ExerciseCreator" href="/ExerciseCreator">Create Exercise</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>

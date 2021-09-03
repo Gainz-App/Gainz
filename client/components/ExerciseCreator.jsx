@@ -58,10 +58,10 @@ const ExerciseCreator = ({ userInfo }) => {
   }
 
   return (
-    <section>
-        <h3>Create a new exercise:</h3>
-  
+    <section id="exerciseCreatorContainer" className="centeredContainer">
+        <h3 className="pageMainText">Create exercise:</h3>
   <Form
+    id="exerciseForm"
     onSubmit={(e) => {
     e.preventDefault();
     createExercise();
@@ -72,7 +72,7 @@ const ExerciseCreator = ({ userInfo }) => {
             <FloatingLabel
               controlId="floatingExercise"
               label="Exercise name:"
-              className="floatExercise"
+              className="floatExercise exerciseInput"
               >
             <Form.Control
                type="text"
@@ -88,7 +88,7 @@ const ExerciseCreator = ({ userInfo }) => {
              </FloatingLabel>
           </Form.Group>
           
-          <Form.Group className="exerciseType" controlId="exerciseType"> 
+          <Form.Group className="exerciseType exerciseInput" controlId="exerciseType"> 
      
             <Form.Select aria-label="Exercise type:" id="exerciseType"
               onChange={(e) => {
@@ -108,7 +108,7 @@ const ExerciseCreator = ({ userInfo }) => {
           </Form.Group>
   
   
-          <Form.Group className="exerciseWeight" controlId="exerciseWeight">
+          <Form.Group className="exerciseWeight exerciseInput" controlId="exerciseWeight">
             {/* <Form.Label>Starting weight (in LBs):</Form.Label> */}
             <FloatingLabel
               controlId="floatingWeight"
@@ -129,7 +129,7 @@ const ExerciseCreator = ({ userInfo }) => {
              </FloatingLabel>
           </Form.Group>
   
-          <Form.Group className="exerciseSets" controlId="exerciseSets">
+          <Form.Group className="exerciseSets exerciseInput" controlId="exerciseSets">
             {/* <Form.Label>Starting sets:</Form.Label> */}
             <FloatingLabel
               controlId="floatingSets"
@@ -149,7 +149,7 @@ const ExerciseCreator = ({ userInfo }) => {
             </FloatingLabel>
           </Form.Group>
   
-          <Form.Group className="exerciseReps" controlId="exerciseReps">
+          <Form.Group className="exerciseReps exerciseInput" controlId="exerciseReps">
             {/* <Form.Label>Starting reps:</Form.Label> */}
             <FloatingLabel
               controlId="floatingReps"
@@ -170,7 +170,7 @@ const ExerciseCreator = ({ userInfo }) => {
               </FloatingLabel>
           </Form.Group>
   
-          <Form.Group className="exerciseRest" controlId="exerciseRest">
+          <Form.Group className="exerciseRest exerciseInput" controlId="exerciseRest">
             {/* <Form.Label>Starting rest time:</Form.Label> */}
             <FloatingLabel
               controlId="floatingRest"
@@ -190,20 +190,25 @@ const ExerciseCreator = ({ userInfo }) => {
               <br />
               </FloatingLabel>
           </Form.Group>
-  
-          <Button
+              <div className="exerciseButtonDiv">
+              <Button
             variant="primary"
-            type="submit">
+            type="submit"
+            className="exerciseButton"
+            >
             Create exercise
           </Button>
   
           <Link to="/">
           <Button
           type="button"
+          className="exerciseButton"
           >
         Cancel
-          </Button>
+          </Button >
         </Link>
+              </div>
+          
         </Form>
   </section>
   )

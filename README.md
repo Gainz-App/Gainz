@@ -1,2 +1,2 @@
 # scratch-project-45
-Scratch Project
+GAINZ v.1.0. (an interation of WobbleGainz)

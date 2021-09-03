@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const HistoryDisplay = () => {
+const HistoryDisplay = ({ userInfo }) => {
   const [history, setHistory] = useState([]);
   // const [curExerciseData, setCurExerciseData] = useState([]);
 
   const getHistory = () => {
-    fetch('/api/history')
+    fetch('/api/history', {
+      method: 'get', 
+      headers: {
+        user_id: userInfo.id
+      }
+    })
       .then((res) => {
         if (res.status === 200) {
           return res.json();
@@ -25,16 +30,18 @@ const HistoryDisplay = () => {
   }, []);
 
   const drills = history.map((drill, i) => {
+    const drillDate = new Date(drill.date).toDateString();
+
     return (
       
-      <div key={drill._id}>
-        <div>Date: {drill.date}</div>
-        <div>
+      <div className="drillContainer" key={drill._id}>
+        <div className="drillFirstRow drillRow">Date: {drillDate}</div>
+        <div className="drillSecondRow drillRow">
           <div>{drill.type_name}</div>
           <div>{drill.weight} lbs.</div>
           <div>{drill.sets} Sets</div>
         </div>
-        <div>
+        <div className="drillThirdRow drillRow">
           <div>{drill.name}</div>
           <div>{drill.rest_interval}min intervals</div>
           <div>{drill.reps} Reps</div>         
@@ -43,13 +50,32 @@ const HistoryDisplay = () => {
   });
 
   return(
-    <div>
-      <h1>Gainz History:</h1>
-      <ul>
+    // <section id="loginContainer" className="centeredContainer">
+    <div className="historyContainer">
+      <img id="logo" src="../assets/GAINZ_logo.png"></img>
+      <h3 className="pageMainText">Gainz History:</h3>
         {drills}
-      </ul>
     </div>
   );
 };
+
+{/* <div id="paper">
+
+  <div id="pattern">
+    <div id="content">
+      Gainz History
+    </div>
+  </div>
+</div> 
+    <div class="container">
+  <div class="box">A</div>
+    <div class="box">B</div>
+    <div class="box">C</div>
+    <div class="box">D</div>
+    <div class="box">E</div>
+    <div class="box">F</div>
+  </div>
+*/}
+
 
 export default HistoryDisplay;
